@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album & Denah USP PSAJ F4 - Professional Edition</title>
+    <title>Aplikasi Album & Denah PSAJ Edition</title>
     <!-- Library untuk Excel & ZIP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -28,7 +28,7 @@
             color: #1e293b;
         }
 
-        /* SIDEBAR STYLING - TETAP SESUAI INSTRUKSI */
+        /* SIDEBAR STYLING */
         .sidebar {
             width: var(--sidebar-width);
             height: 100vh;
@@ -128,14 +128,7 @@
             position: relative;
             flex-shrink: 0;
         }
-        .logo-img { 
-            position: absolute; 
-            left: 18mm; 
-            top: -2mm; 
-            width: 75px; 
-            height: 90px; 
-            object-fit: contain; 
-        }
+        .logo-img { position: absolute; left: 18mm; top: -1mm; width: 95px; height: 115px; object-fit: contain; }
         .header h1 { margin: 0; font-size: 12pt; text-transform: uppercase; line-height: 1.1; letter-spacing: 0.5px; }
         .header h2 { margin: 1px 0; font-size: 15pt; font-weight: 900; text-transform: uppercase; line-height: 1.1;}
         .header p { margin: 1px 0; font-size: 8.5pt; font-weight: 500; }
@@ -267,7 +260,7 @@
             <!-- Data Instansi -->
             <div class="accordion-item">
                 <div class="accordion-header active" onclick="toggleAccordion(this)">
-                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> DATA INSTANSI</i>
+                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> DATA INSTANSI</i>
                     <span>▼</span>
                 </div>
                 <div class="accordion-content show">
@@ -329,6 +322,7 @@
                         <label>2. Upload Foto (ZIP/FOLDER)</label>
                         <input type="file" id="import-photos" multiple accept="image/*, .zip">
                     </div>
+                    <button class="btn btn-outline" style="background: #ef4444; color:white; border:none;" onclick="clearData()">🗑️ Hapus Semua Data</button>
                 </div>
             </div>
 
@@ -367,6 +361,113 @@
         let photoMap = {};
         let schoolLogo = LOGO_KAB_BEKASI;
 
+        // INISIALISASI DATABASE (IndexedDB) UNTUK FOTO
+        const dbName = "USP_Database";
+        const storeName = "Photos";
+
+        function openDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(dbName, 1);
+                request.onupgradeneeded = (e) => {
+                    const db = e.target.result;
+                    if (!db.objectStoreNames.contains(storeName)) {
+                        db.createObjectStore(storeName);
+                    }
+                };
+                request.onsuccess = (e) => resolve(e.target.result);
+                request.onerror = (e) => reject(e.target.error);
+            });
+        }
+
+        async function savePhotosToDB(photos) {
+            const db = await openDB();
+            const tx = db.transaction(storeName, "readwrite");
+            const store = tx.objectStore(storeName);
+            for (const key in photos) {
+                store.put(photos[key], key);
+            }
+            return tx.complete;
+        }
+
+        async function loadPhotosFromDB() {
+            const db = await openDB();
+            const tx = db.transaction(storeName, "readonly");
+            const store = tx.objectStore(storeName);
+            const request = store.openCursor();
+            return new Promise((resolve) => {
+                const results = {};
+                request.onsuccess = (e) => {
+                    const cursor = e.target.result;
+                    if (cursor) {
+                        results[cursor.key] = cursor.value;
+                        cursor.continue();
+                    } else {
+                        resolve(results);
+                    }
+                };
+            });
+        }
+
+        async function clearPhotosDB() {
+            const db = await openDB();
+            const tx = db.transaction(storeName, "readwrite");
+            tx.objectStore(storeName).clear();
+            return tx.complete;
+        }
+
+        // FUNGSI SIMPAN SETTING KE LOCAL STORAGE
+        function saveSettingsToLocal() {
+            const settings = {
+                status: document.getElementById('in-status').value,
+                school: document.getElementById('in-school').value,
+                dist: document.getElementById('in-dist').value,
+                addr: document.getElementById('in-addr').value,
+                email: document.getElementById('in-email').value,
+                title: document.getElementById('in-title').value,
+                room: document.getElementById('in-room').value,
+                year: document.getElementById('in-year').value,
+                mode: document.getElementById('in-mode').value,
+                layout: document.getElementById('in-layout').value,
+                schoolLogo: schoolLogo
+            };
+            localStorage.setItem('usp_settings_v2', JSON.stringify(settings));
+            localStorage.setItem('usp_students_v2', JSON.stringify(students));
+        }
+
+        async function loadFromLocal() {
+            const savedSettings = localStorage.getItem('usp_settings_v2');
+            const savedStudents = localStorage.getItem('usp_students_v2');
+            
+            // Load foto dari IndexedDB
+            photoMap = await loadPhotosFromDB();
+
+            if (savedSettings) {
+                const s = JSON.parse(savedSettings);
+                document.getElementById('in-status').value = s.status;
+                document.getElementById('in-school').value = s.school;
+                document.getElementById('in-dist').value = s.dist;
+                document.getElementById('in-addr').value = s.addr;
+                document.getElementById('in-email').value = s.email;
+                document.getElementById('in-title').value = s.title;
+                document.getElementById('in-room').value = s.room;
+                document.getElementById('in-year').value = s.year;
+                document.getElementById('in-mode').value = s.mode;
+                document.getElementById('in-layout').value = s.layout;
+                schoolLogo = s.schoolLogo || LOGO_KAB_BEKASI;
+                handleStatusChange();
+            }
+            if (savedStudents) { students = JSON.parse(savedStudents); }
+            updateUI();
+        }
+
+        async function clearData() {
+            if(confirm("Hapus semua data yang tersimpan?")) {
+                localStorage.clear();
+                await clearPhotosDB();
+                location.reload();
+            }
+        }
+
         function toggleAccordion(header) {
             const content = header.nextElementSibling;
             const isActive = header.classList.contains('active');
@@ -386,15 +487,19 @@
                 uploadGroup.style.display = 'none';
             } else {
                 uploadGroup.style.display = 'block';
-                if (schoolLogo === LOGO_KAB_BEKASI) schoolLogo = "https://via.placeholder.com/150?text=Upload+Logo";
             }
+            saveSettingsToLocal();
             updateUI();
         }
 
         function handleLogo(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) { schoolLogo = e.target.result; updateUI(); }
+                reader.onload = function(e) { 
+                    schoolLogo = e.target.result; 
+                    saveSettingsToLocal(); 
+                    updateUI(); 
+                }
                 reader.readAsDataURL(input.files[0]);
             }
         }
@@ -421,6 +526,7 @@
                     nisn: String(r[1] || '').trim(),
                     nama: String(r[2] || '')
                 }));
+                saveSettingsToLocal();
                 updateUI();
             };
             reader.readAsArrayBuffer(e.target.files[0]);
@@ -428,6 +534,7 @@
 
         document.getElementById('import-photos').addEventListener('change', async function(e) {
             const files = e.target.files;
+            const newPhotos = {};
             for (let file of files) {
                 if (file.name.endsWith('.zip')) {
                     const zip = await JSZip.loadAsync(file);
@@ -437,15 +544,18 @@
                             const blob = await zipEntry.async("blob");
                             const base64 = await blobToBase64(blob);
                             const cleanName = filename.split('/').pop().split('.')[0].trim();
+                            newPhotos[cleanName] = base64;
                             photoMap[cleanName] = base64;
                         }
                     }
                 } else {
                     const base64 = await blobToBase64(file);
                     const cleanName = file.name.split('.')[0].trim();
+                    newPhotos[cleanName] = base64;
                     photoMap[cleanName] = base64;
                 }
             }
+            await savePhotosToDB(newPhotos);
             updateUI();
         });
 
@@ -459,6 +569,7 @@
 
         function updateUI() {
             const container = document.getElementById('pages-container');
+            if(!container) return;
             container.innerHTML = '';
             const mode = document.getElementById('in-mode').value;
             const layout = document.getElementById('in-layout').value;
@@ -471,8 +582,9 @@
 
             for (let i = 0; i < students.length; i += itemsPerPage) {
                 const chunk = students.slice(i, i + itemsPerPage);
-                container.innerHTML += createPageHtml(chunk, layout, mode, i / itemsPerPage);
+                container.innerHTML += createPageHtml(chunk, layout, mode, Math.floor(i / itemsPerPage));
             }
+            saveSettingsToLocal();
         }
 
         function createPageHtml(data, layout, mode, pageIndex) {
@@ -517,25 +629,14 @@
                 });
             }
 
-            // LOGIKA JUDUL DINAMIS SESUAI MODE UNTUK HALAMAN 2+
-            let currentTitle;
-            if (pageIndex === 0) {
-                currentTitle = document.getElementById('in-title').value;
-            } else {
-                if (mode === 'album') {
-                    currentTitle = "ALBUM FOTO PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)";
-                } else {
-                    currentTitle = "DENAH KURSI PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)";
-                }
-            }
-            
+            let currentTitle = (pageIndex === 0) ? document.getElementById('in-title').value : `${(mode === 'album' ? "ALBUM FOTO" : "DENAH KURSI")} PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)`;
             const baseRoom = parseInt(document.getElementById('in-room').value) || 1;
             const currentRoom = (baseRoom + pageIndex).toString().padStart(3, '0');
 
             return `
                 <div class="page">
                     <div class="header">
-                        <img class="logo-img" src="${schoolLogo}" alt="Logo Bekasi">
+                        <img class="logo-img" src="${schoolLogo}" alt="Logo">
                         <h1>PEMERINTAH KABUPATEN BEKASI</h1>
                         <h1>DINAS PENDIDIKAN</h1>
                         <h2>${document.getElementById('in-school').value}</h2>
@@ -556,7 +657,7 @@
                 </div>`;
         }
 
-        window.onload = updateUI;
+        window.onload = loadFromLocal;
     </script>
 </body>
 </html>
