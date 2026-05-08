@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aplikasi Album & Denah PSAJ Edition</title>
+    <title>Album & Denah USP PSAJ F4 - Professional Edition</title>
     <!-- Library untuk Excel & ZIP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -121,12 +121,8 @@
 
         /* KOP SURAT */
         .header {
-            text-align: center;
-            border-bottom: 4px double #000;
-            padding-bottom: 8px;
-            margin-bottom: 12px;
-            position: relative;
-            flex-shrink: 0;
+            text-align: center; border-bottom: 4px double #000; padding-bottom: 8px;
+            margin-bottom: 12px; position: relative; flex-shrink: 0;
         }
         .logo-img { position: absolute; left: 18mm; top: -1mm; width: 95px; height: 115px; object-fit: contain; }
         .header h1 { margin: 0; font-size: 12pt; text-transform: uppercase; line-height: 1.1; letter-spacing: 0.5px; }
@@ -135,13 +131,8 @@
         .header .email-text { color: blue; text-decoration: underline; font-size: 8pt; }
 
         .sub-header {
-            text-align: center;
-            margin-bottom: 10px;
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 2px;
+            text-align: center; margin-bottom: 10px; flex-shrink: 0;
+            display: flex; flex-direction: column; align-items: center; gap: 2px;
         }
         .sub-header h4 { 
             margin: 0; font-size: 10pt; text-transform: uppercase; font-weight: 800;
@@ -154,85 +145,29 @@
         }
         .year-text { font-weight: 700; font-size: 10pt; text-transform: uppercase; }
 
-        /* GRID ALBUM */
+        /* GRID CONTENT */
         .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            gap: 8px 6px;
-            justify-items: center;
-            flex-grow: 1;
-            align-content: start;
+            display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr);
+            gap: 8px 6px; justify-items: center; flex-grow: 1; align-content: start;
         }
 
-        .student-card {
-            width: 3.8cm;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+        .student-card { width: 3.8cm; display: flex; flex-direction: column; align-items: center; }
         .photo-frame {
-            width: 2.8cm;
-            height: 3.8cm;
-            border: 1px solid #000;
-            background: #fff;
-            display: flex; align-items: center; justify-content: center; overflow: hidden;
-            position: relative;
+            width: 2.8cm; height: 3.8cm; border: 1px solid #000; background: #fff;
+            display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;
         }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; z-index: 2; }
-        .no-img-text { 
-            position: absolute;
-            font-size: 5pt; 
-            color: #000; 
-            opacity: 0.25; 
-            text-align: center; 
-            text-transform: uppercase; 
-            font-weight: bold;
-            z-index: 1;
-        }
+        .no-img-text { position: absolute; font-size: 5pt; color: #000; opacity: 0.25; text-align: center; text-transform: uppercase; font-weight: bold; z-index: 1; }
 
-        .id-label {
-            margin-top: 3px; background: #ffff00; border: 1px solid #000; width: 3.6cm;
-            padding: 1px 0; text-align: center; font-weight: 800; font-size: 8.5pt;
-        }
+        .id-label { margin-top: 3px; background: #ffff00; border: 1px solid #000; width: 3.6cm; padding: 1px 0; text-align: center; font-weight: 800; font-size: 8.5pt; }
         .student-info { font-size: 7.5pt; text-align: center; margin-top: 1px; font-weight: 700; line-height: 1; }
 
         /* DENAH GRID */
-        .denah-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            gap: 12px 10px;
-            justify-items: center;
-            flex-grow: 1;
-        }
-
-        .teacher-desk {
-            align-self: flex-start;
-            margin-left: 20px;
-            border: 1.5px solid #000;
-            background: #d4d4aa;
-            padding: 4px 12px;
-            font-weight: bold;
-            font-size: 8.5pt;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-        }
-
-        .seat-card {
-            width: 3.8cm;
-            border: 1.2px solid #000;
-            display: flex;
-            flex-direction: column;
-        }
-        .seat-header {
-            background: #fff; border-bottom: 1.2px solid #000;
-            text-align: center; font-size: 7.5pt; font-weight: 800; padding: 2px;
-        }
-        .seat-number {
-            text-align: center; font-size: 9pt; font-weight: bold;
-            padding: 6px 2px; border-bottom: 1.2px solid #000;
-        }
+        .denah-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr); gap: 12px 10px; justify-items: center; flex-grow: 1; }
+        .teacher-desk { align-self: flex-start; margin-left: 20px; border: 1.5px solid #000; background: #d4d4aa; padding: 4px 12px; font-weight: bold; font-size: 8.5pt; margin-bottom: 12px; text-transform: uppercase; }
+        .seat-card { width: 3.8cm; border: 1.2px solid #000; display: flex; flex-direction: column; }
+        .seat-header { background: #fff; border-bottom: 1.2px solid #000; text-align: center; font-size: 7.5pt; font-weight: 800; padding: 2px; }
+        .seat-number { text-align: center; font-size: 9pt; font-weight: bold; padding: 6px 2px; border-bottom: 1.2px solid #000; }
         .seat-footer { display: flex; height: 26px; }
         .footer-left { flex: 1; background: #fff; border-right: 1.2px solid #000; }
         .footer-right { flex: 1; background: #c0adc5; }
@@ -252,12 +187,12 @@
         <div class="sidebar-header">
             <h3>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8l-4 4v16a2 2 0 0 0 2 2z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M16 13H8"></path><path d="M16 17H8"></path><path d="M10 9H8"></path></svg>
-                USP PRECISION
+                APLIKASI ALBUM DAN DENAH
             </h3>
         </div>
 
         <div class="sidebar-content">
-            <!-- Data Instansi -->
+            <!-- 1. DATA INSTANSI -->
             <div class="accordion-item">
                 <div class="accordion-header active" onclick="toggleAccordion(this)">
                     <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> DATA INSTANSI</i>
@@ -306,7 +241,7 @@
                 </div>
             </div>
 
-            <!-- Import Data -->
+            <!-- 2. IMPORT DATA -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> IMPORT DATA & FOTO</i>
@@ -326,7 +261,7 @@
                 </div>
             </div>
 
-            <!-- Mode & Layout -->
+            <!-- 3. PILIH MODE & URUTAN -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> PILIH MODE & URUTAN</i>
@@ -347,7 +282,18 @@
                             <option value="zigzag">Zigzag (Ke Samping)</option>
                         </select>
                     </div>
+                </div>
+            </div>
+
+            <!-- 4. CETAK DOKUMEN -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg> CETAK DOKUMEN</i>
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
                     <button class="btn btn-blue" onclick="window.print()">🖨️ CETAK SEKARANG</button>
+                    <p style="font-size: 9px; opacity: 0.8; text-align: center;">Pastikan ukuran kertas di setting print adalah F4/Folio dan Margin: None.</p>
                 </div>
             </div>
         </div>
@@ -361,19 +307,14 @@
         let photoMap = {};
         let schoolLogo = LOGO_KAB_BEKASI;
 
-        // INISIALISASI DATABASE (IndexedDB) UNTUK FOTO
-        const dbName = "USP_Database";
-        const storeName = "Photos";
+        // INDEXEDDB LOGIC FOR PERMANENT PHOTOS
+        const dbName = "USP_DB_PRO";
+        const storeName = "PhotosStore";
 
         function openDB() {
             return new Promise((resolve, reject) => {
                 const request = indexedDB.open(dbName, 1);
-                request.onupgradeneeded = (e) => {
-                    const db = e.target.result;
-                    if (!db.objectStoreNames.contains(storeName)) {
-                        db.createObjectStore(storeName);
-                    }
-                };
+                request.onupgradeneeded = (e) => e.target.result.createObjectStore(storeName);
                 request.onsuccess = (e) => resolve(e.target.result);
                 request.onerror = (e) => reject(e.target.error);
             });
@@ -383,10 +324,8 @@
             const db = await openDB();
             const tx = db.transaction(storeName, "readwrite");
             const store = tx.objectStore(storeName);
-            for (const key in photos) {
-                store.put(photos[key], key);
-            }
-            return tx.complete;
+            for (const key in photos) { store.put(photos[key], key); }
+            return new Promise(resolve => tx.oncomplete = () => resolve());
         }
 
         async function loadPhotosFromDB() {
@@ -398,12 +337,8 @@
                 const results = {};
                 request.onsuccess = (e) => {
                     const cursor = e.target.result;
-                    if (cursor) {
-                        results[cursor.key] = cursor.value;
-                        cursor.continue();
-                    } else {
-                        resolve(results);
-                    }
+                    if (cursor) { results[cursor.key] = cursor.value; cursor.continue(); }
+                    else { resolve(results); }
                 };
             });
         }
@@ -411,11 +346,11 @@
         async function clearPhotosDB() {
             const db = await openDB();
             const tx = db.transaction(storeName, "readwrite");
-            tx.objectStore(storeName).clear();
-            return tx.complete;
+            store = tx.objectStore(storeName);
+            store.clear();
         }
 
-        // FUNGSI SIMPAN SETTING KE LOCAL STORAGE
+        // SETTINGS PERSISTENCE
         function saveSettingsToLocal() {
             const settings = {
                 status: document.getElementById('in-status').value,
@@ -430,15 +365,13 @@
                 layout: document.getElementById('in-layout').value,
                 schoolLogo: schoolLogo
             };
-            localStorage.setItem('usp_settings_v2', JSON.stringify(settings));
-            localStorage.setItem('usp_students_v2', JSON.stringify(students));
+            localStorage.setItem('usp_settings_v3', JSON.stringify(settings));
+            localStorage.setItem('usp_students_v3', JSON.stringify(students));
         }
 
         async function loadFromLocal() {
-            const savedSettings = localStorage.getItem('usp_settings_v2');
-            const savedStudents = localStorage.getItem('usp_students_v2');
-            
-            // Load foto dari IndexedDB
+            const savedSettings = localStorage.getItem('usp_settings_v3');
+            const savedStudents = localStorage.getItem('usp_students_v3');
             photoMap = await loadPhotosFromDB();
 
             if (savedSettings) {
@@ -461,7 +394,7 @@
         }
 
         async function clearData() {
-            if(confirm("Hapus semua data yang tersimpan?")) {
+            if(confirm("Hapus semua data (Termasuk foto) yang tersimpan?")) {
                 localStorage.clear();
                 await clearPhotosDB();
                 location.reload();
@@ -473,21 +406,14 @@
             const isActive = header.classList.contains('active');
             document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('show'));
             document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
-            if (!isActive) {
-                content.classList.add('show');
-                header.classList.add('active');
-            }
+            if (!isActive) { content.classList.add('show'); header.classList.add('active'); }
         }
 
         function handleStatusChange() {
             const status = document.getElementById('in-status').value;
             const uploadGroup = document.getElementById('logo-upload-group');
-            if (status === 'negeri') {
-                schoolLogo = LOGO_KAB_BEKASI;
-                uploadGroup.style.display = 'none';
-            } else {
-                uploadGroup.style.display = 'block';
-            }
+            if (status === 'negeri') { schoolLogo = LOGO_KAB_BEKASI; uploadGroup.style.display = 'none'; }
+            else { uploadGroup.style.display = 'block'; }
             saveSettingsToLocal();
             updateUI();
         }
@@ -495,23 +421,14 @@
         function handleLogo(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) { 
-                    schoolLogo = e.target.result; 
-                    saveSettingsToLocal(); 
-                    updateUI(); 
-                }
+                reader.onload = function(e) { schoolLogo = e.target.result; saveSettingsToLocal(); updateUI(); }
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
         function downloadTemplate() {
             const csvContent = "data:text/csv;charset=utf-8,No Peserta,NISN,Nama\n2602126401,0123456789,BUDI SANTOSO";
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "template_peserta.csv");
-            document.body.appendChild(link);
-            link.click();
+            window.open(encodeURI(csvContent));
         }
 
         document.getElementById('import-excel').addEventListener('change', function(e) {
@@ -597,9 +514,7 @@
                         if (data[current]) { displayData[gridIdx] = data[current]; current++; }
                     }
                 }
-            } else {
-                data.forEach((s, i) => displayData[i] = s);
-            }
+            } else { data.forEach((s, i) => displayData[i] = s); }
 
             let gridContent = '';
             if (mode === 'album') {
@@ -607,25 +522,12 @@
                     if (!s) { gridContent += `<div class="student-card" style="visibility:hidden"></div>`; return; }
                     const imgSource = photoMap[s.nisn];
                     const photoDisplay = imgSource ? `<img src="${imgSource}">` : `<div class="no-img-text">TIDAK ADA FOTO<br>${s.nisn}</div>`;
-                    gridContent += `
-                        <div class="student-card">
-                            <div class="photo-frame">${photoDisplay}</div>
-                            <div class="id-label">${s.no}</div>
-                            <div class="student-info">NISN: ${s.nisn}</div>
-                        </div>`;
+                    gridContent += `<div class="student-card"><div class="photo-frame">${photoDisplay}</div><div class="id-label">${s.no}</div><div class="student-info">NISN: ${s.nisn}</div></div>`;
                 });
             } else {
                 displayData.forEach(s => {
                     if (!s) { gridContent += `<div class="seat-card" style="visibility:hidden"></div>`; return; }
-                    gridContent += `
-                        <div class="seat-card">
-                            <div class="seat-header">NOMOR PESERTA</div>
-                            <div class="seat-number">${s.no}</div>
-                            <div class="seat-footer">
-                                <div class="footer-left"></div>
-                                <div class="footer-right"></div>
-                            </div>
-                        </div>`;
+                    gridContent += `<div class="seat-card"><div class="seat-header">NOMOR PESERTA</div><div class="seat-number">${s.no}</div><div class="seat-footer"><div class="footer-left"></div><div class="footer-right"></div></div></div>`;
                 });
             }
 
@@ -651,9 +553,7 @@
                         <div class="year-text">TAHUN PELAJARAN ${document.getElementById('in-year').value}</div>
                     </div>
                     ${mode === 'denah' ? '<div class="teacher-desk">MEJA PENGAWAS</div>' : ''}
-                    <div class="${mode === 'album' ? 'photo-grid' : 'denah-grid'}">
-                        ${gridContent}
-                    </div>
+                    <div class="${mode === 'album' ? 'photo-grid' : 'denah-grid'}">${gridContent}</div>
                 </div>`;
         }
 
