@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album & Denah USP PSAJ F4 - Professional Edition</title>
+    <title>Album & Denah PSAJ F4 - Professional Edition</title>
     <!-- Library untuk Excel & ZIP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -187,7 +187,7 @@
         <div class="sidebar-header">
             <h3>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8l-4 4v16a2 2 0 0 0 2 2z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M16 13H8"></path><path d="M16 17H8"></path><path d="M10 9H8"></path></svg>
-                APLIKASI ALBUM DAN DENAH
+                USP PRECISION
             </h3>
         </div>
 
@@ -228,7 +228,7 @@
                     </div>
                     <div class="form-group">
                         <label>Judul Dokumen (Halaman 1)</label>
-                        <input type="text" id="in-title" value="ALBUM FOTO UJIAN SATUAN PENDIDIKAN" oninput="updateUI()">
+                        <input type="text" id="in-title" value="ALBUM FOTO PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="updateUI()">
                     </div>
                     <div class="form-group">
                         <label>Ruangan (Mulai Dari)</label>
@@ -307,8 +307,8 @@
         let photoMap = {};
         let schoolLogo = LOGO_KAB_BEKASI;
 
-        // INDEXEDDB LOGIC FOR PERMANENT PHOTOS
-        const dbName = "USP_DB_PRO";
+        // INDEXEDDB LOGIC
+        const dbName = "USP_DB_PRO_V3";
         const storeName = "PhotosStore";
 
         function openDB() {
@@ -346,11 +346,10 @@
         async function clearPhotosDB() {
             const db = await openDB();
             const tx = db.transaction(storeName, "readwrite");
-            store = tx.objectStore(storeName);
-            store.clear();
+            tx.objectStore(storeName).clear();
         }
 
-        // SETTINGS PERSISTENCE
+        // PERSISTENCE
         function saveSettingsToLocal() {
             const settings = {
                 status: document.getElementById('in-status').value,
@@ -365,13 +364,13 @@
                 layout: document.getElementById('in-layout').value,
                 schoolLogo: schoolLogo
             };
-            localStorage.setItem('usp_settings_v3', JSON.stringify(settings));
-            localStorage.setItem('usp_students_v3', JSON.stringify(students));
+            localStorage.setItem('psaj_settings_v3', JSON.stringify(settings));
+            localStorage.setItem('psaj_students_v3', JSON.stringify(students));
         }
 
         async function loadFromLocal() {
-            const savedSettings = localStorage.getItem('usp_settings_v3');
-            const savedStudents = localStorage.getItem('usp_students_v3');
+            const savedSettings = localStorage.getItem('psaj_settings_v3');
+            const savedStudents = localStorage.getItem('psaj_students_v3');
             photoMap = await loadPhotosFromDB();
 
             if (savedSettings) {
@@ -531,6 +530,7 @@
                 });
             }
 
+            // DYNAMIC TITLE PSAJ
             let currentTitle = (pageIndex === 0) ? document.getElementById('in-title').value : `${(mode === 'album' ? "ALBUM FOTO" : "DENAH KURSI")} PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)`;
             const baseRoom = parseInt(document.getElementById('in-room').value) || 1;
             const currentRoom = (baseRoom + pageIndex).toString().padStart(3, '0');
