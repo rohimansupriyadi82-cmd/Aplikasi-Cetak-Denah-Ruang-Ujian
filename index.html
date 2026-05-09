@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Album & Denah PSAJ F4 - Professional Edition</title>
+    <title>USP & PSAJ Precision - Professional Edition</title>
     <!-- Library untuk Excel & ZIP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
@@ -54,6 +54,33 @@
             display: flex; align-items: center; gap: 10px;
         }
 
+        /* Navigasi Tab */
+        .nav-tabs {
+            display: flex;
+            background: rgba(0,0,0,0.2);
+            padding: 5px;
+            margin: 10px 15px;
+            border-radius: 10px;
+            gap: 5px;
+        }
+        .nav-btn {
+            flex: 1;
+            padding: 10px 5px;
+            border: none;
+            border-radius: 8px;
+            background: transparent;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+        .nav-btn.active {
+            background: var(--accent);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
         .sidebar-content { flex: 1; overflow-y: auto; padding: 15px; }
 
         .accordion-item {
@@ -97,6 +124,11 @@
         .btn-blue { background: var(--accent); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #ffffff; }
 
+        /* Style Panduan */
+        .guide-steps { color: #e2e8f0; font-size: 12px; line-height: 1.6; padding-left: 0; list-style: none; }
+        .guide-steps li { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .guide-steps strong { color: var(--accent); display: block; font-size: 11px; text-transform: uppercase; margin-bottom: 2px; }
+
         /* PREVIEW AREA */
         .main-content {
             margin-left: var(--sidebar-width); flex-grow: 1;
@@ -107,7 +139,7 @@
         .page {
             width: 215mm;
             height: 330mm;
-            padding: 10mm 12mm;
+            padding: 10mm 15mm;
             background: white;
             box-shadow: 0 10px 50px rgba(0,0,0,0.1);
             box-sizing: border-box;
@@ -117,6 +149,7 @@
             flex-direction: column;
             overflow: hidden;
             page-break-after: always;
+            color: #000;
         }
 
         /* KOP SURAT */
@@ -124,45 +157,47 @@
             text-align: center; border-bottom: 4px double #000; padding-bottom: 8px;
             margin-bottom: 12px; position: relative; flex-shrink: 0;
         }
-        .logo-img { position: absolute; left: 18mm; top: -1mm; width: 95px; height: 115px; object-fit: contain; }
+        .logo-img { position: absolute; left: 5mm; top: -1mm; width: 85px; height: 105px; object-fit: contain; }
         .header h1 { margin: 0; font-size: 12pt; text-transform: uppercase; line-height: 1.1; letter-spacing: 0.5px; }
         .header h2 { margin: 1px 0; font-size: 15pt; font-weight: 900; text-transform: uppercase; line-height: 1.1;}
         .header p { margin: 1px 0; font-size: 8.5pt; font-weight: 500; }
         .header .email-text { color: blue; text-decoration: underline; font-size: 8pt; }
 
-        .sub-header {
-            text-align: center; margin-bottom: 10px; flex-shrink: 0;
-            display: flex; flex-direction: column; align-items: center; gap: 2px;
-        }
-        .sub-header h4 { 
-            margin: 0; font-size: 10pt; text-transform: uppercase; font-weight: 800;
-            border: 1.5px solid #000; padding: 4px 15px; margin-bottom: 4px;
-            background: #fff; line-height: 1.2;
-        }
-        .room-box { 
-            font-size: 14pt; font-weight: 900; margin: 1px 0; border: 1.5px solid #000; 
-            display: inline-block; padding: 1px 22px; background: #fff;
-        }
+        /* TABEL ABSENSI */
+        .absensi-title { text-align: center; font-weight: 800; font-size: 12pt; margin: 10px 0; text-transform: uppercase; }
+        .absensi-meta { width: 100%; margin-bottom: 10px; font-size: 10pt; font-weight: 600; }
+        .absensi-table { width: 100%; border-collapse: collapse; border: 1.5px solid #000; table-layout: fixed; }
+        .absensi-table th { background: #f2f2f2; border: 1px solid #000; padding: 8px; font-size: 9pt; text-transform: uppercase; }
+        .absensi-table td { border: 1px solid #000; padding: 6px 8px; font-size: 10pt; overflow: hidden; }
+        
+        /* Zebra Cross Coloring */
+        .absensi-table tbody tr.row-odd td { background-color: #f0fdf4 !important; } /* Hijau Muda */
+        .absensi-table tbody tr.row-even td { background-color: #ffffff !important; } /* Putih */
+
+        /* Fix: Mencegah No Peserta Turun ke Bawah */
+        .no-wrap { white-space: nowrap; }
+
+        /* Zigzag TTD Style */
+        .ttd-container { display: flex; align-items: center; width: 100%; min-height: 35px; }
+        .ttd-zigzag-left { justify-content: flex-start; text-align: left; padding-left: 5px; }
+        .ttd-zigzag-right { justify-content: center; text-align: left; padding-left: 45px; }
+
+        /* TANDA TANGAN FOOTER */
+        .footer-sig { margin-top: auto; display: flex; justify-content: flex-end; padding: 0 20px 20px 20px; font-size: 10pt; }
+        .sig-box { text-align: left; min-width: 250px; }
+
+        /* CSS LAMA ALBUM & DENAH */
+        .sub-header { text-align: center; margin-bottom: 10px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .sub-header h4 { margin: 0; font-size: 10pt; text-transform: uppercase; font-weight: 800; border: 1.5px solid #000; padding: 4px 15px; margin-bottom: 4px; background: #fff; line-height: 1.2; min-width: 300px; }
+        .room-box { font-size: 14pt; font-weight: 900; margin: 1px 0; border: 1.5px solid #000; display: inline-block; padding: 1px 22px; background: #fff; }
         .year-text { font-weight: 700; font-size: 10pt; text-transform: uppercase; }
-
-        /* GRID CONTENT */
-        .photo-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr);
-            gap: 8px 6px; justify-items: center; flex-grow: 1; align-content: start;
-        }
-
+        .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr); gap: 8px 6px; justify-items: center; flex-grow: 1; align-content: start; }
         .student-card { width: 3.8cm; display: flex; flex-direction: column; align-items: center; }
-        .photo-frame {
-            width: 2.8cm; height: 3.8cm; border: 1px solid #000; background: #fff;
-            display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative;
-        }
+        .photo-frame { width: 2.8cm; height: 3.8cm; border: 1px solid #000; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; z-index: 2; }
         .no-img-text { position: absolute; font-size: 5pt; color: #000; opacity: 0.25; text-align: center; text-transform: uppercase; font-weight: bold; z-index: 1; }
-
         .id-label { margin-top: 3px; background: #ffff00; border: 1px solid #000; width: 3.6cm; padding: 1px 0; text-align: center; font-weight: 800; font-size: 8.5pt; }
         .student-info { font-size: 7.5pt; text-align: center; margin-top: 1px; font-weight: 700; line-height: 1; }
-
-        /* DENAH GRID */
         .denah-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr); gap: 12px 10px; justify-items: center; flex-grow: 1; }
         .teacher-desk { align-self: flex-start; margin-left: 20px; border: 1.5px solid #000; background: #d4d4aa; padding: 4px 12px; font-weight: bold; font-size: 8.5pt; margin-bottom: 12px; text-transform: uppercase; }
         .seat-card { width: 3.8cm; border: 1.2px solid #000; display: flex; flex-direction: column; }
@@ -191,14 +226,52 @@
             </h3>
         </div>
 
+        <div class="nav-tabs">
+            <button class="nav-btn active" id="btn-tab-main" onclick="switchMode('main')">Album & Denah</button>
+            <button class="nav-btn" id="btn-tab-absen" onclick="switchMode('absen')">Daftar Hadir</button>
+        </div>
+
         <div class="sidebar-content">
-            <!-- 1. DATA INSTANSI -->
+
+            <!-- PANEL 0: PANDUAN PENGGUNAAN (NEW) -->
             <div class="accordion-item">
                 <div class="accordion-header active" onclick="toggleAccordion(this)">
-                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> DATA INSTANSI</i>
+                    <i>📖 PANDUAN PENGGUNAAN</i>
                     <span>▼</span>
                 </div>
                 <div class="accordion-content show">
+                    <ul class="guide-steps">
+                        <li>
+                            <strong>1. Identitas Sekolah</strong>
+                            Isi data pada menu "DATA INSTANSI". Jika sekolah Swasta, upload logo sekolah Anda secara manual.
+                        </li>
+                        <li>
+                            <strong>2. Persiapan Excel</strong>
+                            Masuk ke menu "DATA MANAGEMENT", klik "Unduh Template Excel". Isi data (No Peserta, NISN, Nama) lalu upload kembali melalui tombol "Upload Excel".
+                        </li>
+                        <li>
+                            <strong>3. Upload Foto Peserta</strong>
+                            Pastikan nama file foto adalah <u>NISN</u> siswa (Contoh: 0123456789.jpg). Masukkan semua foto ke dalam 1 folder, lalu ZIP folder tersebut dan upload melalui tombol "Upload Foto".
+                        </li>
+                        <li>
+                            <strong>4. Pilih Mode Dokumen</strong>
+                            Gunakan tombol navigasi di atas (Album & Denah / Daftar Hadir) sesuai dokumen yang ingin dicetak.
+                        </li>
+                        <li>
+                            <strong>5. Proses Cetak</strong>
+                            Klik "CETAK SEKARANG". Pada setelan printer: Pilih Ukuran Kertas <b>F4 (215 x 330 mm)</b> atau <b>Folio</b>, Margin set ke <b>None</b>.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- PANEL 1: DATA INSTANSI -->
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">
+                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> DATA INSTANSI</i>
+                    <span>▼</span>
+                </div>
+                <div class="accordion-content">
                     <div class="form-group">
                         <label>Status Sekolah</label>
                         <select id="in-status" onchange="handleStatusChange()">
@@ -227,10 +300,6 @@
                         <input type="text" id="in-email" value="sdnmuarabakti01@gmail.com" oninput="updateUI()">
                     </div>
                     <div class="form-group">
-                        <label>Judul Dokumen (Halaman 1)</label>
-                        <input type="text" id="in-title" value="ALBUM FOTO PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="updateUI()">
-                    </div>
-                    <div class="form-group">
                         <label>Ruangan (Mulai Dari)</label>
                         <input type="text" id="in-room" value="01" oninput="updateUI()">
                     </div>
@@ -241,61 +310,119 @@
                 </div>
             </div>
 
-            <!-- 2. IMPORT DATA -->
+            <!-- PANEL 2: KHUSUS ALBUM & DENAH -->
+            <div id="panel-main">
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <i>⚙️ SETTING ALBUM & DENAH</i>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="form-group">
+                            <label>Judul Dokumen</label>
+                            <input type="text" id="in-title" value="ALBUM FOTO PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="updateUI()">
+                        </div>
+                        <div class="form-group">
+                            <label>Mode Dokumen</label>
+                            <select id="in-mode" onchange="updateUI()">
+                                <option value="album">Album Foto Peserta</option>
+                                <option value="denah">Denah Kursi Peserta</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Bentuk Urutan</label>
+                            <select id="in-layout" onchange="updateUI()">
+                                <option value="vertical">Vertikal (Ke Bawah)</option>
+                                <option value="zigzag">Zigzag (Ke Samping)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 3: KHUSUS DAFTAR HADIR -->
+            <div id="panel-absen" style="display: none;">
+                <div class="accordion-item">
+                    <div class="accordion-header active" onclick="toggleAccordion(this)">
+                        <i>📝 SETTING DAFTAR HADIR</i>
+                        <span>▼</span>
+                    </div>
+                    <div class="accordion-content show">
+                        <div class="form-group">
+                            <label>Judul Daftar Hadir</label>
+                            <input type="text" id="abs-title" value="DAFTAR HADIR PESERTA PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="updateUI()">
+                        </div>
+                        <div class="form-group">
+                            <label>Mata Pelajaran</label>
+                            <input type="text" id="abs-mapel" value="BAHASA INDONESIA" oninput="updateUI()">
+                        </div>
+                        <div class="form-group">
+                            <label>Hari, Tanggal</label>
+                            <input type="text" id="abs-date" value="Senin, 12 Mei 2026" oninput="updateUI()">
+                        </div>
+                        <div class="form-group">
+                            <label>Waktu (Jam)</label>
+                            <input type="text" id="abs-time" value="07.30 - 09.30" oninput="updateUI()">
+                        </div>
+                        <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 20px 0;">
+                        <div class="form-group">
+                            <label>Kota (Titi Mangsa)</label>
+                            <input type="text" id="abs-city" value="Babelan" oninput="updateUI()">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Pengawas Ruang</label>
+                            <input type="text" id="abs-p1-name" value="NAMA PENGAWAS" oninput="updateUI()">
+                        </div>
+                        <div class="form-group">
+                            <label>NIP Pengawas Ruang</label>
+                            <input type="text" id="abs-p1-nip" value="19870101 202001 1 001" oninput="updateUI()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL 4: DATA MANAGEMENT -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> IMPORT DATA & FOTO</i>
+                    <i>📥 DATA MANAGEMENT</i>
                     <span>▼</span>
                 </div>
                 <div class="accordion-content">
-                    <button class="btn btn-outline" onclick="downloadTemplate()">📥 Template Excel</button>
+                    <button class="btn btn-outline" onclick="downloadTemplate()">📥 Unduh Template Excel</button>
                     <div class="form-group">
                         <label>1. Upload Excel</label>
                         <input type="file" id="import-excel" accept=".xlsx, .xls">
                     </div>
-                    <div class="form-group">
-                        <label>2. Upload Foto (ZIP/FOLDER)</label>
+                    <div class="form-group" id="photo-upload-container">
+                        <label>2. Upload Foto (Khusus Album)</label>
                         <input type="file" id="import-photos" multiple accept="image/*, .zip">
                     </div>
-                    <button class="btn btn-outline" style="background: #ef4444; color:white; border:none;" onclick="clearData()">🗑️ Hapus Semua Data</button>
+                    
+                    <!-- TAMBAH MANUAL -->
+                    <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
+                        <label style="font-size: 9px; font-weight: bold; margin-bottom: 5px; display: block;">TAMBAH MANUAL</label>
+                        <input type="text" id="man-no" placeholder="No Peserta" style="width:100%; margin-bottom:5px; padding:5px; font-size:11px;">
+                        <input type="text" id="man-nisn" placeholder="NISN" style="width:100%; margin-bottom:5px; padding:5px; font-size:11px;">
+                        <input type="text" id="man-nama" placeholder="Nama Lengkap" style="width:100%; margin-bottom:5px; padding:5px; font-size:11px;">
+                        <button class="btn btn-blue" style="padding: 8px; font-size: 9px;" onclick="addManual()">➕ Tambah Siswa</button>
+                    </div>
+
+                    <button class="btn btn-outline" style="background: #ef4444; color:white; border:none;" onclick="clearData()">🗑️ Reset / Hapus Semua</button>
                 </div>
             </div>
 
-            <!-- 3. PILIH MODE & URUTAN -->
+            <!-- PANEL 5: PRINT -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg> PILIH MODE & URUTAN</i>
-                    <span>▼</span>
-                </div>
-                <div class="accordion-content">
-                    <div class="form-group">
-                        <label>Mode Dokumen</label>
-                        <select id="in-mode" onchange="updateUI()">
-                            <option value="album">Album Foto Peserta</option>
-                            <option value="denah">Denah Kursi Peserta</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Bentuk Urutan</label>
-                        <select id="in-layout" onchange="updateUI()">
-                            <option value="vertical">Vertikal (Ke Bawah)</option>
-                            <option value="zigzag">Zigzag (Ke Samping)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. CETAK DOKUMEN -->
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg> CETAK DOKUMEN</i>
+                    <i>🖨️ CETAK DOKUMEN</i>
                     <span>▼</span>
                 </div>
                 <div class="accordion-content">
                     <button class="btn btn-blue" onclick="window.print()">🖨️ CETAK SEKARANG</button>
-                    <p style="font-size: 9px; opacity: 0.8; text-align: center;">Pastikan ukuran kertas di setting print adalah F4/Folio dan Margin: None.</p>
+                    <p style="font-size: 9px; opacity: 0.8; text-align: center;">Kertas: F4/Folio | Margin: None</p>
                 </div>
             </div>
+
         </div>
     </div>
 
@@ -306,8 +433,9 @@
         let students = [];
         let photoMap = {};
         let schoolLogo = LOGO_KAB_BEKASI;
+        let activeTab = 'main'; 
 
-        // INDEXEDDB LOGIC
+        // INDEXEDDB CONFIG
         const dbName = "USP_DB_PRO_V3";
         const storeName = "PhotosStore";
 
@@ -349,63 +477,23 @@
             tx.objectStore(storeName).clear();
         }
 
-        // PERSISTENCE
-        function saveSettingsToLocal() {
-            const settings = {
-                status: document.getElementById('in-status').value,
-                school: document.getElementById('in-school').value,
-                dist: document.getElementById('in-dist').value,
-                addr: document.getElementById('in-addr').value,
-                email: document.getElementById('in-email').value,
-                title: document.getElementById('in-title').value,
-                room: document.getElementById('in-room').value,
-                year: document.getElementById('in-year').value,
-                mode: document.getElementById('in-mode').value,
-                layout: document.getElementById('in-layout').value,
-                schoolLogo: schoolLogo
-            };
-            localStorage.setItem('psaj_settings_v3', JSON.stringify(settings));
-            localStorage.setItem('psaj_students_v3', JSON.stringify(students));
-        }
-
-        async function loadFromLocal() {
-            const savedSettings = localStorage.getItem('psaj_settings_v3');
-            const savedStudents = localStorage.getItem('psaj_students_v3');
-            photoMap = await loadPhotosFromDB();
-
-            if (savedSettings) {
-                const s = JSON.parse(savedSettings);
-                document.getElementById('in-status').value = s.status;
-                document.getElementById('in-school').value = s.school;
-                document.getElementById('in-dist').value = s.dist;
-                document.getElementById('in-addr').value = s.addr;
-                document.getElementById('in-email').value = s.email;
-                document.getElementById('in-title').value = s.title;
-                document.getElementById('in-room').value = s.room;
-                document.getElementById('in-year').value = s.year;
-                document.getElementById('in-mode').value = s.mode;
-                document.getElementById('in-layout').value = s.layout;
-                schoolLogo = s.schoolLogo || LOGO_KAB_BEKASI;
-                handleStatusChange();
-            }
-            if (savedStudents) { students = JSON.parse(savedStudents); }
+        // NAVIGATION LOGIC
+        function switchMode(mode) {
+            activeTab = mode;
+            document.getElementById('btn-tab-main').classList.toggle('active', mode === 'main');
+            document.getElementById('btn-tab-absen').classList.toggle('active', mode === 'absen');
+            
+            document.getElementById('panel-main').style.display = (mode === 'main') ? 'block' : 'none';
+            document.getElementById('panel-absen').style.display = (mode === 'absen') ? 'block' : 'none';
+            document.getElementById('photo-upload-container').style.display = (mode === 'main') ? 'block' : 'none';
+            
             updateUI();
-        }
-
-        async function clearData() {
-            if(confirm("Hapus semua data (Termasuk foto) yang tersimpan?")) {
-                localStorage.clear();
-                await clearPhotosDB();
-                location.reload();
-            }
         }
 
         function toggleAccordion(header) {
             const content = header.nextElementSibling;
-            const isActive = header.classList.contains('active');
-            document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('show'));
-            document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
-            if (!isActive) { content.classList.add('show'); header.classList.add('active'); }
+            header.classList.toggle('active');
+            content.classList.toggle('show');
         }
 
         function handleStatusChange() {
@@ -413,21 +501,40 @@
             const uploadGroup = document.getElementById('logo-upload-group');
             if (status === 'negeri') { schoolLogo = LOGO_KAB_BEKASI; uploadGroup.style.display = 'none'; }
             else { uploadGroup.style.display = 'block'; }
-            saveSettingsToLocal();
             updateUI();
         }
 
         function handleLogo(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = function(e) { schoolLogo = e.target.result; saveSettingsToLocal(); updateUI(); }
+                reader.onload = function(e) { schoolLogo = e.target.result; updateUI(); }
                 reader.readAsDataURL(input.files[0]);
             }
         }
 
+        function addManual() {
+            const no = document.getElementById('man-no').value;
+            const nisn = document.getElementById('man-nisn').value;
+            const nama = document.getElementById('man-nama').value;
+            if(!no || !nama) return alert("No Peserta dan Nama wajib diisi");
+            students.push({ no, nisn, nama });
+            document.getElementById('man-no').value = '';
+            document.getElementById('man-nisn').value = '';
+            document.getElementById('man-nama').value = '';
+            updateUI();
+        }
+
         function downloadTemplate() {
-            const csvContent = "data:text/csv;charset=utf-8,No Peserta,NISN,Nama\n2602126401,0123456789,BUDI SANTOSO";
-            window.open(encodeURI(csvContent));
+            const wb = XLSX.utils.book_new();
+            const wsData = [
+                ["No Peserta", "NISN", "Nama Peserta/Siswa"],
+                ["26-02-12-64-01", "0123456789", "ADITIA RAMADAN"],
+                ["26-02-12-64-02", "0123456790", "AISYAH MAHARANI HARJA"]
+            ];
+            const ws = XLSX.utils.aoa_to_sheet(wsData);
+            ws['!cols'] = [{ wch: 20 }, { wch: 15 }, { wch: 35 }];
+            XLSX.utils.book_append_sheet(wb, ws, "Data Peserta");
+            XLSX.writeFile(wb, "Template_Peserta_PSAJ.xlsx");
         }
 
         document.getElementById('import-excel').addEventListener('change', function(e) {
@@ -437,12 +544,13 @@
                 const workbook = XLSX.read(data, {type: 'array'});
                 const sheet = workbook.Sheets[workbook.SheetNames[0]];
                 const json = XLSX.utils.sheet_to_json(sheet, {header: 1});
-                students = json.slice(1).filter(r => r.length >= 2).map(r => ({
-                    no: String(r[0] || ''),
-                    nisn: String(r[1] || '').trim(),
-                    nama: String(r[2] || '')
-                }));
-                saveSettingsToLocal();
+                students = json.slice(1)
+                    .filter(r => r.length >= 2)
+                    .map(r => ({
+                        no: String(r[0] || ''),
+                        nisn: String(r[1] || '').trim(),
+                        nama: String(r[2] || '')
+                    }));
                 updateUI();
             };
             reader.readAsArrayBuffer(e.target.files[0]);
@@ -485,22 +593,25 @@
 
         function updateUI() {
             const container = document.getElementById('pages-container');
-            if(!container) return;
             container.innerHTML = '';
-            const mode = document.getElementById('in-mode').value;
-            const layout = document.getElementById('in-layout').value;
+            
             const itemsPerPage = 20;
-
             if (students.length === 0) {
-                container.innerHTML = createPageHtml([], layout, mode, 0);
+                container.innerHTML = (activeTab === 'main') 
+                    ? createPageHtml([], 'vertical', 'album', 0) 
+                    : createAbsensiPageHtml([], 0);
                 return;
             }
 
             for (let i = 0; i < students.length; i += itemsPerPage) {
                 const chunk = students.slice(i, i + itemsPerPage);
-                container.innerHTML += createPageHtml(chunk, layout, mode, Math.floor(i / itemsPerPage));
+                if (activeTab === 'main') {
+                    container.innerHTML += createPageHtml(chunk, document.getElementById('in-layout').value, document.getElementById('in-mode').value, Math.floor(i / itemsPerPage));
+                } else {
+                    container.innerHTML += createAbsensiPageHtml(chunk, Math.floor(i / itemsPerPage));
+                }
             }
-            saveSettingsToLocal();
+            saveToLocal();
         }
 
         function createPageHtml(data, layout, mode, pageIndex) {
@@ -530,15 +641,19 @@
                 });
             }
 
-            // DYNAMIC TITLE PSAJ
-            let currentTitle = (pageIndex === 0) ? document.getElementById('in-title').value : `${(mode === 'album' ? "ALBUM FOTO" : "DENAH KURSI")} PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)`;
             const baseRoom = parseInt(document.getElementById('in-room').value) || 1;
             const currentRoom = (baseRoom + pageIndex).toString().padStart(3, '0');
+
+            let headerTitle = document.getElementById('in-title').value;
+            if (mode === 'denah') {
+                headerTitle = headerTitle.replace('ALBUM FOTO', 'DENAH TEMPAT DUDUK');
+                if (!headerTitle.includes('DENAH')) headerTitle = 'DENAH TEMPAT DUDUK PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)';
+            }
 
             return `
                 <div class="page">
                     <div class="header">
-                        <img class="logo-img" src="${schoolLogo}" alt="Logo">
+                        <img class="logo-img" src="${schoolLogo}">
                         <h1>PEMERINTAH KABUPATEN BEKASI</h1>
                         <h1>DINAS PENDIDIKAN</h1>
                         <h2>${document.getElementById('in-school').value}</h2>
@@ -547,7 +662,7 @@
                         <p class="email-text">Email: ${document.getElementById('in-email').value}</p>
                     </div>
                     <div class="sub-header">
-                        <h4>${currentTitle}</h4>
+                        <h4>${headerTitle}</h4>
                         <div style="font-size:8pt; font-weight:bold; margin-top:2px">RUANGAN</div>
                         <div class="room-box">${currentRoom}</div>
                         <div class="year-text">TAHUN PELAJARAN ${document.getElementById('in-year').value}</div>
@@ -557,7 +672,142 @@
                 </div>`;
         }
 
-        window.onload = loadFromLocal;
+        function createAbsensiPageHtml(data, pageIndex) {
+            const baseRoom = parseInt(document.getElementById('in-room').value) || 1;
+            const currentRoom = (baseRoom + pageIndex).toString().padStart(3, '0');
+            
+            let tableRows = '';
+            data.forEach((s, i) => {
+                const globalIdx = (pageIndex * 20) + i + 1;
+                const isEven = globalIdx % 2 === 0;
+                const rowClass = (globalIdx % 2 !== 0) ? 'row-odd' : 'row-even';
+                
+                let ttdContent = '';
+                if (!isEven) {
+                    ttdContent = `<div class="ttd-container ttd-zigzag-left">${globalIdx}. ...........................</div>`;
+                } else {
+                    ttdContent = `<div class="ttd-container ttd-zigzag-right">${globalIdx}. ...........................</div>`;
+                }
+
+                tableRows += `
+                    <tr class="${rowClass}">
+                        <td align="center" width="35">${globalIdx}.</td>
+                        <td align="center" width="145" class="no-wrap">${s.no}</td>
+                        <td style="font-weight:bold; text-transform:uppercase;">${s.nama}</td>
+                        <td width="180" style="padding: 0;">
+                            ${ttdContent}
+                        </td>
+                    </tr>
+                `;
+            });
+
+            for(let j = data.length; j < 20; j++) {
+                const globalIdxFill = (pageIndex * 20) + j + 1;
+                const rowClassFill = (globalIdxFill % 2 !== 0) ? 'row-odd' : 'row-even';
+                tableRows += `<tr class="${rowClassFill}"><td style="height:38px"></td><td></td><td></td><td></td></tr>`;
+            }
+
+            return `
+                <div class="page">
+                    <div class="header">
+                        <img class="logo-img" src="${schoolLogo}">
+                        <h1>PEMERINTAH KABUPATEN BEKASI</h1>
+                        <h1>DINAS PENDIDIKAN</h1>
+                        <h2>${document.getElementById('in-school').value}</h2>
+                        <h1>${document.getElementById('in-dist').value}</h1>
+                        <p>${document.getElementById('in-addr').value}</p>
+                        <p class="email-text">Email: ${document.getElementById('in-email').value}</p>
+                    </div>
+                    <div class="absensi-title">${document.getElementById('abs-title').value}</div>
+                    <table class="absensi-meta">
+                        <tr>
+                            <td width="120">MATA PELAJARAN</td><td>: ${document.getElementById('abs-mapel').value}</td>
+                            <td width="80">RUANG</td><td>: ${currentRoom}</td>
+                        </tr>
+                        <tr>
+                            <td>HARI, TANGGAL</td><td>: ${document.getElementById('abs-date').value}</td>
+                            <td>TAHUN</td><td>: ${document.getElementById('in-year').value}</td>
+                        </tr>
+                        <tr>
+                            <td>WAKTU</td><td colspan="3">: ${document.getElementById('abs-time').value}</td>
+                        </tr>
+                    </table>
+                    <table class="absensi-table">
+                        <thead>
+                            <tr>
+                                <th width="35">NO</th>
+                                <th width="145">NO PESERTA</th>
+                                <th>NAMA PESERTA</th>
+                                <th width="180">TANDA TANGAN</th>
+                            </tr>
+                        </thead>
+                        <tbody>${tableRows}</tbody>
+                    </table>
+                    <div class="footer-sig">
+                        <div class="sig-box">
+                            ${document.getElementById('abs-city').value}, ${document.getElementById('abs-date').value.split(',')[1] || ''}<br>
+                            Pengawas Ruang,<br><br><br><br>
+                            <b>${document.getElementById('abs-p1-name').value}</b><br>
+                            NIP. ${document.getElementById('abs-p1-nip').value}
+                        </div>
+                    </div>
+                </div>`;
+        }
+
+        function saveToLocal() {
+            const data = {
+                students,
+                school: document.getElementById('in-school').value,
+                dist: document.getElementById('in-dist').value,
+                addr: document.getElementById('in-addr').value,
+                email: document.getElementById('in-email').value,
+                year: document.getElementById('in-year').value,
+                room: document.getElementById('in-room').value,
+                absTitle: document.getElementById('abs-title').value,
+                absMapel: document.getElementById('abs-mapel').value,
+                absDate: document.getElementById('abs-date').value,
+                absTime: document.getElementById('abs-time').value,
+                absCity: document.getElementById('abs-city').value,
+                absP1: document.getElementById('abs-p1-name').value,
+                absNip: document.getElementById('abs-p1-nip').value,
+                schoolLogo
+            };
+            localStorage.setItem('precision_psaj_v3', JSON.stringify(data));
+        }
+
+        async function loadLocal() {
+            const saved = localStorage.getItem('precision_psaj_v3');
+            photoMap = await loadPhotosFromDB();
+            if(saved) {
+                const d = JSON.parse(saved);
+                students = d.students || [];
+                document.getElementById('in-school').value = d.school || '';
+                document.getElementById('in-dist').value = d.dist || '';
+                document.getElementById('in-addr').value = d.addr || '';
+                document.getElementById('in-email').value = d.email || '';
+                document.getElementById('in-year').value = d.year || '';
+                document.getElementById('in-room').value = d.room || '01';
+                document.getElementById('abs-title').value = d.absTitle || '';
+                document.getElementById('abs-mapel').value = d.absMapel || '';
+                document.getElementById('abs-date').value = d.absDate || '';
+                document.getElementById('abs-time').value = d.absTime || '';
+                document.getElementById('abs-city').value = d.absCity || '';
+                document.getElementById('abs-p1-name').value = d.absP1 || '';
+                document.getElementById('abs-p1-nip').value = d.absNip || '';
+                schoolLogo = d.schoolLogo || LOGO_KAB_BEKASI;
+            }
+            updateUI();
+        }
+
+        async function clearData() {
+            if(confirm("Hapus semua data yang tersimpan?")) {
+                localStorage.removeItem('precision_psaj_v3');
+                await clearPhotosDB();
+                location.reload();
+            }
+        }
+
+        window.onload = loadLocal;
     </script>
 </body>
 </html>
