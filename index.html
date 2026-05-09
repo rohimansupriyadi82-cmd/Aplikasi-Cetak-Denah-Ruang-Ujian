@@ -192,11 +192,36 @@
         .room-box { font-size: 14pt; font-weight: 900; margin: 1px 0; border: 1.5px solid #000; display: inline-block; padding: 1px 22px; background: #fff; }
         .year-text { font-weight: 700; font-size: 10pt; text-transform: uppercase; }
         .photo-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr); gap: 8px 6px; justify-items: center; flex-grow: 1; align-content: start; }
+        
+        /* STUDENT CARD - ALBUM */
         .student-card { width: 3.8cm; display: flex; flex-direction: column; align-items: center; }
-        .photo-frame { width: 2.8cm; height: 3.8cm; border: 1px solid #000; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+        .photo-frame { 
+            width: 2.8cm; height: 3.8cm; border: 1px solid #000; background: #fff; 
+            display: flex; align-items: center; justify-content: center; 
+            overflow: hidden; position: relative; 
+        }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; z-index: 2; }
         .no-img-text { position: absolute; font-size: 5pt; color: #000; opacity: 0.25; text-align: center; text-transform: uppercase; font-weight: bold; z-index: 1; }
         .id-label { margin-top: 3px; background: #ffff00; border: 1px solid #000; width: 3.6cm; padding: 1px 0; text-align: center; font-weight: 800; font-size: 8.5pt; }
+        
+        /* PERBAIKAN: STYLE NAMA SEKOLAH MENEMPEL DI BAWAH FOTO (DI ATAS NOMOR PESERTA) */
+        .school-label-on-photo { 
+            position: absolute; 
+            bottom: 0; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(255, 255, 255, 0.85); /* Putih semi-transparan agar foto tetap terlihat sedikit */
+            color: #000; 
+            font-size: 5.5pt; 
+            font-weight: 800; 
+            text-align: center; 
+            padding: 1px 0; 
+            z-index: 10; 
+            text-transform: uppercase;
+            border-top: 0.5px solid #000;
+            line-height: 1;
+        }
+
         .student-info { font-size: 7.5pt; text-align: center; margin-top: 1px; font-weight: 700; line-height: 1; }
         .denah-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-template-rows: repeat(5, 1fr); gap: 12px 10px; justify-items: center; flex-grow: 1; }
         .teacher-desk { align-self: flex-start; margin-left: 20px; border: 1.5px solid #000; background: #d4d4aa; padding: 4px 12px; font-weight: bold; font-size: 8.5pt; margin-bottom: 12px; text-transform: uppercase; }
@@ -222,7 +247,7 @@
         <div class="sidebar-header">
             <h3>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8l-4 4v16a2 2 0 0 0 2 2z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M16 13H8"></path><path d="M16 17H8"></path><path d="M10 9H8"></path></svg>
-                USP PRECISION
+                APLIKASI PSAJ
             </h3>
         </div>
 
@@ -233,7 +258,7 @@
 
         <div class="sidebar-content">
 
-            <!-- PANEL 0: PANDUAN PENGGUNAAN (NEW) -->
+            <!-- PANEL 0: PANDUAN PENGGUNAAN -->
             <div class="accordion-item">
                 <div class="accordion-header active" onclick="toggleAccordion(this)">
                     <i>📖 PANDUAN PENGGUNAAN</i>
@@ -293,7 +318,7 @@
                     </div>
                     <div class="form-group">
                         <label>Alamat Sekolah</label>
-                        <input type="text" id="in-addr" value="Jl. Bayangkara Rt. 12/07 Ds. Muara Bakti" oninput="updateUI()">
+                        <input type="text" id="in-addr" value="Jl. Bayangkara Rt. 12/07 Ds. Muara Bakti Kec. Babelan Kab. Bekasi Kode Pos 17610" oninput="updateUI()">
                     </div>
                     <div class="form-group">
                         <label>Email Sekolah</label>
@@ -632,7 +657,20 @@
                     if (!s) { gridContent += `<div class="student-card" style="visibility:hidden"></div>`; return; }
                     const imgSource = photoMap[s.nisn];
                     const photoDisplay = imgSource ? `<img src="${imgSource}">` : `<div class="no-img-text">TIDAK ADA FOTO<br>${s.nisn}</div>`;
-                    gridContent += `<div class="student-card"><div class="photo-frame">${photoDisplay}</div><div class="id-label">${s.no}</div><div class="student-info">NISN: ${s.nisn}</div></div>`;
+                    
+                    // Logic Integrasi Nama Sekolah dari Input DATA INSTANSI
+                    const schoolName = document.getElementById('in-school').value;
+
+                    gridContent += `
+                    <div class="student-card">
+                        <div class="photo-frame">
+                            ${photoDisplay}
+                            <!-- Label Nama Sekolah menempel di bawah foto (di dalam frame) -->
+                            <div class="school-label-on-photo">${schoolName}</div>
+                        </div>
+                        <div class="id-label">${s.no}</div>
+                        <div class="student-info">NISN: ${s.nisn}</div>
+                    </div>`;
                 });
             } else {
                 displayData.forEach(s => {
