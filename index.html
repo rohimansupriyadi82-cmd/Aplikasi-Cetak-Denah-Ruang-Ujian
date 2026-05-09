@@ -152,16 +152,16 @@
             color: #000;
         }
 
-        /* KOP SURAT */
+        /* KOP SURAT (PROFESSIONAL GOVERNMENT STYLE) */
         .header {
-            text-align: center; border-bottom: 4px double #000; padding-bottom: 8px;
-            margin-bottom: 12px; position: relative; flex-shrink: 0;
+            text-align: center; border-bottom: 4px double #000; padding-bottom: 10px;
+            margin-bottom: 15px; position: relative; flex-shrink: 0;
         }
-        .logo-img { position: absolute; left: 5mm; top: -1mm; width: 85px; height: 105px; object-fit: contain; }
-        .header h1 { margin: 0; font-size: 12pt; text-transform: uppercase; line-height: 1.1; letter-spacing: 0.5px; }
-        .header h2 { margin: 1px 0; font-size: 15pt; font-weight: 900; text-transform: uppercase; line-height: 1.1;}
-        .header p { margin: 1px 0; font-size: 8.5pt; font-weight: 500; }
-        .header .email-text { color: blue; text-decoration: underline; font-size: 8pt; }
+        .logo-img { position: absolute; left: 2mm; top: -2mm; width: 90px; height: 110px; object-fit: contain; }
+        .header h1 { margin: 0; font-size: 13pt; text-transform: uppercase; line-height: 1.2; letter-spacing: 0.5px; font-weight: 700; }
+        .header h2 { margin: 2px 0; font-size: 19pt; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
+        .header p { margin: 2px 0; font-size: 9.5pt; font-weight: 600; line-height: 1.1; }
+        .header .email-text { color: blue; text-decoration: underline; font-size: 9pt; }
 
         /* TABEL ABSENSI */
         .absensi-title { text-align: center; font-weight: 800; font-size: 12pt; margin: 10px 0; text-transform: uppercase; }
@@ -171,10 +171,9 @@
         .absensi-table td { border: 1px solid #000; padding: 6px 8px; font-size: 10pt; overflow: hidden; }
         
         /* Zebra Cross Coloring */
-        .absensi-table tbody tr.row-odd td { background-color: #f0fdf4 !important; } /* Hijau Muda */
-        .absensi-table tbody tr.row-even td { background-color: #ffffff !important; } /* Putih */
+        .absensi-table tbody tr.row-odd td { background-color: #f0fdf4 !important; } 
+        .absensi-table tbody tr.row-even td { background-color: #ffffff !important; } 
 
-        /* Fix: Mencegah No Peserta Turun ke Bawah */
         .no-wrap { white-space: nowrap; }
 
         /* Zigzag TTD Style */
@@ -204,22 +203,12 @@
         .no-img-text { position: absolute; font-size: 5pt; color: #000; opacity: 0.25; text-align: center; text-transform: uppercase; font-weight: bold; z-index: 1; }
         .id-label { margin-top: 3px; background: #ffff00; border: 1px solid #000; width: 3.6cm; padding: 1px 0; text-align: center; font-weight: 800; font-size: 8.5pt; }
         
-        /* PERBAIKAN: STYLE NAMA SEKOLAH MENEMPEL DI BAWAH FOTO (DI ATAS NOMOR PESERTA) */
         .school-label-on-photo { 
-            position: absolute; 
-            bottom: 0; 
-            left: 0; 
-            width: 100%; 
-            background: rgba(255, 255, 255, 0.85); /* Putih semi-transparan agar foto tetap terlihat sedikit */
-            color: #000; 
-            font-size: 5.5pt; 
-            font-weight: 800; 
-            text-align: center; 
-            padding: 1px 0; 
-            z-index: 10; 
-            text-transform: uppercase;
-            border-top: 0.5px solid #000;
-            line-height: 1;
+            position: absolute; bottom: 0; left: 0; width: 100%; 
+            background: rgba(255, 255, 255, 0.85); color: #000; 
+            font-size: 5.5pt; font-weight: 800; text-align: center; 
+            padding: 1px 0; z-index: 10; text-transform: uppercase;
+            border-top: 0.5px solid #000; line-height: 1;
         }
 
         .student-info { font-size: 7.5pt; text-align: center; margin-top: 1px; font-weight: 700; line-height: 1; }
@@ -247,7 +236,7 @@
         <div class="sidebar-header">
             <h3>
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8l-4 4v16a2 2 0 0 0 2 2z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="M16 13H8"></path><path d="M16 17H8"></path><path d="M10 9H8"></path></svg>
-                APLIKASI PSAJ
+                USP PRECISION
             </h3>
         </div>
 
@@ -266,26 +255,10 @@
                 </div>
                 <div class="accordion-content show">
                     <ul class="guide-steps">
-                        <li>
-                            <strong>1. Identitas Sekolah</strong>
-                            Isi data pada menu "DATA INSTANSI". Jika sekolah Swasta, upload logo sekolah Anda secara manual.
-                        </li>
-                        <li>
-                            <strong>2. Persiapan Excel</strong>
-                            Masuk ke menu "DATA MANAGEMENT", klik "Unduh Template Excel". Isi data (No Peserta, NISN, Nama) lalu upload kembali melalui tombol "Upload Excel".
-                        </li>
-                        <li>
-                            <strong>3. Upload Foto Peserta</strong>
-                            Pastikan nama file foto adalah <u>NISN</u> siswa (Contoh: 0123456789.jpg). Masukkan semua foto ke dalam 1 folder, lalu ZIP folder tersebut dan upload melalui tombol "Upload Foto".
-                        </li>
-                        <li>
-                            <strong>4. Pilih Mode Dokumen</strong>
-                            Gunakan tombol navigasi di atas (Album & Denah / Daftar Hadir) sesuai dokumen yang ingin dicetak.
-                        </li>
-                        <li>
-                            <strong>5. Proses Cetak</strong>
-                            Klik "CETAK SEKARANG". Pada setelan printer: Pilih Ukuran Kertas <b>F4 (215 x 330 mm)</b> atau <b>Folio</b>, Margin set ke <b>None</b>.
-                        </li>
+                        <li><strong>1. Identitas Sekolah:</strong> Isi data sekolah. Alamat & Nama Sekolah akan langsung terintegrasi ke dokumen.</li>
+                        <li><strong>2. Persiapan Excel:</strong> Download template, isi data, dan upload kembali.</li>
+                        <li><strong>3. Foto Siswa:</strong> Upload ZIP foto dengan nama file = NISN siswa.</li>
+                        <li><strong>4. Navigasi:</strong> Gunakan tombol di atas sidebar untuk berpindah mode tampilan.</li>
                     </ul>
                 </div>
             </div>
@@ -293,7 +266,7 @@
             <!-- PANEL 1: DATA INSTANSI -->
             <div class="accordion-item">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
-                    <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg> DATA INSTANSI</i>
+                    <i>🏢 DATA INSTANSI</i>
                     <span>▼</span>
                 </div>
                 <div class="accordion-content">
@@ -383,11 +356,11 @@
                         </div>
                         <div class="form-group">
                             <label>Hari, Tanggal</label>
-                            <input type="text" id="abs-date" value="Senin, 12 Mei 2026" oninput="updateUI()">
+                            <input type="text" id="abs-date" value="Senin, 11 Mei 2026" oninput="updateUI()">
                         </div>
                         <div class="form-group">
                             <label>Waktu (Jam)</label>
-                            <input type="text" id="abs-time" value="07.30 - 09.30" oninput="updateUI()">
+                            <input type="text" id="abs-time" value="08.00 - 09.30" oninput="updateUI()">
                         </div>
                         <hr style="border: 0.5px solid rgba(255,255,255,0.1); margin: 20px 0;">
                         <div class="form-group">
@@ -423,7 +396,6 @@
                         <input type="file" id="import-photos" multiple accept="image/*, .zip">
                     </div>
                     
-                    <!-- TAMBAH MANUAL -->
                     <div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 10px;">
                         <label style="font-size: 9px; font-weight: bold; margin-bottom: 5px; display: block;">TAMBAH MANUAL</label>
                         <input type="text" id="man-no" placeholder="No Peserta" style="width:100%; margin-bottom:5px; padding:5px; font-size:11px;">
@@ -442,9 +414,8 @@
                     <i>🖨️ CETAK DOKUMEN</i>
                     <span>▼</span>
                 </div>
-                <div class="accordion-content">
+                <div class="accordion-content show">
                     <button class="btn btn-blue" onclick="window.print()">🖨️ CETAK SEKARANG</button>
-                    <p style="font-size: 9px; opacity: 0.8; text-align: center;">Kertas: F4/Folio | Margin: None</p>
                 </div>
             </div>
 
@@ -502,16 +473,12 @@
             tx.objectStore(storeName).clear();
         }
 
-        // NAVIGATION LOGIC
         function switchMode(mode) {
             activeTab = mode;
             document.getElementById('btn-tab-main').classList.toggle('active', mode === 'main');
             document.getElementById('btn-tab-absen').classList.toggle('active', mode === 'absen');
-            
             document.getElementById('panel-main').style.display = (mode === 'main') ? 'block' : 'none';
             document.getElementById('panel-absen').style.display = (mode === 'absen') ? 'block' : 'none';
-            document.getElementById('photo-upload-container').style.display = (mode === 'main') ? 'block' : 'none';
-            
             updateUI();
         }
 
@@ -541,25 +508,17 @@
             const no = document.getElementById('man-no').value;
             const nisn = document.getElementById('man-nisn').value;
             const nama = document.getElementById('man-nama').value;
-            if(!no || !nama) return alert("No Peserta dan Nama wajib diisi");
+            if(!no || !nama) return alert("Isi No dan Nama!");
             students.push({ no, nisn, nama });
-            document.getElementById('man-no').value = '';
-            document.getElementById('man-nisn').value = '';
-            document.getElementById('man-nama').value = '';
             updateUI();
         }
 
         function downloadTemplate() {
             const wb = XLSX.utils.book_new();
-            const wsData = [
-                ["No Peserta", "NISN", "Nama Peserta/Siswa"],
-                ["26-02-12-64-01", "0123456789", "ADITIA RAMADAN"],
-                ["26-02-12-64-02", "0123456790", "AISYAH MAHARANI HARJA"]
-            ];
+            const wsData = [["No Peserta", "NISN", "Nama Peserta/Siswa"], ["26-02-12-64-01", "0123456789", "ADITIA RAMADAN"]];
             const ws = XLSX.utils.aoa_to_sheet(wsData);
-            ws['!cols'] = [{ wch: 20 }, { wch: 15 }, { wch: 35 }];
-            XLSX.utils.book_append_sheet(wb, ws, "Data Peserta");
-            XLSX.writeFile(wb, "Template_Peserta_PSAJ.xlsx");
+            XLSX.utils.book_append_sheet(wb, ws, "Data");
+            XLSX.writeFile(wb, "Template_PSAJ.xlsx");
         }
 
         document.getElementById('import-excel').addEventListener('change', function(e) {
@@ -569,13 +528,11 @@
                 const workbook = XLSX.read(data, {type: 'array'});
                 const sheet = workbook.Sheets[workbook.SheetNames[0]];
                 const json = XLSX.utils.sheet_to_json(sheet, {header: 1});
-                students = json.slice(1)
-                    .filter(r => r.length >= 2)
-                    .map(r => ({
-                        no: String(r[0] || ''),
-                        nisn: String(r[1] || '').trim(),
-                        nama: String(r[2] || '')
-                    }));
+                students = json.slice(1).filter(r => r.length >= 2).map(r => ({
+                    no: String(r[0] || ''),
+                    nisn: String(r[1] || '').trim(),
+                    nama: String(r[2] || '')
+                }));
                 updateUI();
             };
             reader.readAsArrayBuffer(e.target.files[0]);
@@ -619,17 +576,11 @@
         function updateUI() {
             const container = document.getElementById('pages-container');
             container.innerHTML = '';
-            
             const itemsPerPage = 20;
-            if (students.length === 0) {
-                container.innerHTML = (activeTab === 'main') 
-                    ? createPageHtml([], 'vertical', 'album', 0) 
-                    : createAbsensiPageHtml([], 0);
-                return;
-            }
+            const currentStudents = students.length > 0 ? students : [];
 
-            for (let i = 0; i < students.length; i += itemsPerPage) {
-                const chunk = students.slice(i, i + itemsPerPage);
+            for (let i = 0; i < Math.max(1, currentStudents.length); i += itemsPerPage) {
+                const chunk = currentStudents.slice(i, i + itemsPerPage);
                 if (activeTab === 'main') {
                     container.innerHTML += createPageHtml(chunk, document.getElementById('in-layout').value, document.getElementById('in-mode').value, Math.floor(i / itemsPerPage));
                 } else {
@@ -652,41 +603,28 @@
             } else { data.forEach((s, i) => displayData[i] = s); }
 
             let gridContent = '';
-            if (mode === 'album') {
-                displayData.forEach(s => {
-                    if (!s) { gridContent += `<div class="student-card" style="visibility:hidden"></div>`; return; }
+            const schoolName = document.getElementById('in-school').value;
+
+            displayData.forEach(s => {
+                if (!s) { gridContent += `<div class="${mode === 'album' ? 'student-card' : 'seat-card'}" style="visibility:hidden"></div>`; return; }
+                if (mode === 'album') {
                     const imgSource = photoMap[s.nisn];
                     const photoDisplay = imgSource ? `<img src="${imgSource}">` : `<div class="no-img-text">TIDAK ADA FOTO<br>${s.nisn}</div>`;
-                    
-                    // Logic Integrasi Nama Sekolah dari Input DATA INSTANSI
-                    const schoolName = document.getElementById('in-school').value;
-
                     gridContent += `
-                    <div class="student-card">
-                        <div class="photo-frame">
-                            ${photoDisplay}
-                            <!-- Label Nama Sekolah menempel di bawah foto (di dalam frame) -->
-                            <div class="school-label-on-photo">${schoolName}</div>
-                        </div>
-                        <div class="id-label">${s.no}</div>
-                        <div class="student-info">NISN: ${s.nisn}</div>
-                    </div>`;
-                });
-            } else {
-                displayData.forEach(s => {
-                    if (!s) { gridContent += `<div class="seat-card" style="visibility:hidden"></div>`; return; }
+                        <div class="student-card">
+                            <div class="photo-frame">${photoDisplay}<div class="school-label-on-photo">${schoolName}</div></div>
+                            <div class="id-label">${s.no}</div>
+                            <div class="student-info">NISN: ${s.nisn}</div>
+                        </div>`;
+                } else {
                     gridContent += `<div class="seat-card"><div class="seat-header">NOMOR PESERTA</div><div class="seat-number">${s.no}</div><div class="seat-footer"><div class="footer-left"></div><div class="footer-right"></div></div></div>`;
-                });
-            }
+                }
+            });
 
             const baseRoom = parseInt(document.getElementById('in-room').value) || 1;
             const currentRoom = (baseRoom + pageIndex).toString().padStart(3, '0');
-
             let headerTitle = document.getElementById('in-title').value;
-            if (mode === 'denah') {
-                headerTitle = headerTitle.replace('ALBUM FOTO', 'DENAH TEMPAT DUDUK');
-                if (!headerTitle.includes('DENAH')) headerTitle = 'DENAH TEMPAT DUDUK PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)';
-            }
+            if (mode === 'denah') headerTitle = headerTitle.replace('ALBUM FOTO', 'DENAH TEMPAT DUDUK');
 
             return `
                 <div class="page">
@@ -713,36 +651,19 @@
         function createAbsensiPageHtml(data, pageIndex) {
             const baseRoom = parseInt(document.getElementById('in-room').value) || 1;
             const currentRoom = (baseRoom + pageIndex).toString().padStart(3, '0');
-            
             let tableRows = '';
             data.forEach((s, i) => {
                 const globalIdx = (pageIndex * 20) + i + 1;
-                const isEven = globalIdx % 2 === 0;
                 const rowClass = (globalIdx % 2 !== 0) ? 'row-odd' : 'row-even';
-                
-                let ttdContent = '';
-                if (!isEven) {
-                    ttdContent = `<div class="ttd-container ttd-zigzag-left">${globalIdx}. ...........................</div>`;
-                } else {
-                    ttdContent = `<div class="ttd-container ttd-zigzag-right">${globalIdx}. ...........................</div>`;
-                }
-
-                tableRows += `
-                    <tr class="${rowClass}">
-                        <td align="center" width="35">${globalIdx}.</td>
-                        <td align="center" width="145" class="no-wrap">${s.no}</td>
-                        <td style="font-weight:bold; text-transform:uppercase;">${s.nama}</td>
-                        <td width="180" style="padding: 0;">
-                            ${ttdContent}
-                        </td>
-                    </tr>
-                `;
+                const ttd = (globalIdx % 2 !== 0) 
+                    ? `<div class="ttd-container ttd-zigzag-left">${globalIdx}. ...........................</div>`
+                    : `<div class="ttd-container ttd-zigzag-right">${globalIdx}. ...........................</div>`;
+                tableRows += `<tr class="${rowClass}"><td align="center" width="35">${globalIdx}.</td><td align="center" width="145" class="no-wrap">${s.no}</td><td style="font-weight:bold; text-transform:uppercase;">${s.nama}</td><td width="180" style="padding:0;">${ttd}</td></tr>`;
             });
 
             for(let j = data.length; j < 20; j++) {
-                const globalIdxFill = (pageIndex * 20) + j + 1;
-                const rowClassFill = (globalIdxFill % 2 !== 0) ? 'row-odd' : 'row-even';
-                tableRows += `<tr class="${rowClassFill}"><td style="height:38px"></td><td></td><td></td><td></td></tr>`;
+                const fillIdx = (pageIndex * 20) + j + 1;
+                tableRows += `<tr class="${fillIdx % 2 !== 0 ? 'row-odd' : 'row-even'}"><td style="height:38px"></td><td></td><td></td><td></td></tr>`;
             }
 
             return `
@@ -758,57 +679,27 @@
                     </div>
                     <div class="absensi-title">${document.getElementById('abs-title').value}</div>
                     <table class="absensi-meta">
-                        <tr>
-                            <td width="120">MATA PELAJARAN</td><td>: ${document.getElementById('abs-mapel').value}</td>
-                            <td width="80">RUANG</td><td>: ${currentRoom}</td>
-                        </tr>
-                        <tr>
-                            <td>HARI, TANGGAL</td><td>: ${document.getElementById('abs-date').value}</td>
-                            <td>TAHUN</td><td>: ${document.getElementById('in-year').value}</td>
-                        </tr>
-                        <tr>
-                            <td>WAKTU</td><td colspan="3">: ${document.getElementById('abs-time').value}</td>
-                        </tr>
+                        <tr><td width="120">MATA PELAJARAN</td><td>: ${document.getElementById('abs-mapel').value}</td><td width="80">RUANG</td><td>: ${currentRoom}</td></tr>
+                        <tr><td>HARI, TANGGAL</td><td>: ${document.getElementById('abs-date').value}</td><td>TAHUN</td><td>: ${document.getElementById('in-year').value}</td></tr>
+                        <tr><td>WAKTU</td><td colspan="3">: ${document.getElementById('abs-time').value}</td></tr>
                     </table>
                     <table class="absensi-table">
-                        <thead>
-                            <tr>
-                                <th width="35">NO</th>
-                                <th width="145">NO PESERTA</th>
-                                <th>NAMA PESERTA</th>
-                                <th width="180">TANDA TANGAN</th>
-                            </tr>
-                        </thead>
+                        <thead><tr><th width="35">NO</th><th width="145">NO PESERTA</th><th>NAMA PESERTA</th><th width="180">TANDA TANGAN</th></tr></thead>
                         <tbody>${tableRows}</tbody>
                     </table>
-                    <div class="footer-sig">
-                        <div class="sig-box">
-                            ${document.getElementById('abs-city').value}, ${document.getElementById('abs-date').value.split(',')[1] || ''}<br>
-                            Pengawas Ruang,<br><br><br><br>
-                            <b>${document.getElementById('abs-p1-name').value}</b><br>
-                            NIP. ${document.getElementById('abs-p1-nip').value}
-                        </div>
-                    </div>
+                    <div class="footer-sig"><div class="sig-box">${document.getElementById('abs-city').value}, ${document.getElementById('abs-date').value.split(',')[1] || ''}<br>Pengawas Ruang,<br><br><br><br><b>${document.getElementById('abs-p1-name').value}</b><br>NIP. ${document.getElementById('abs-p1-nip').value}</div></div>
                 </div>`;
         }
 
         function saveToLocal() {
             const data = {
-                students,
-                school: document.getElementById('in-school').value,
-                dist: document.getElementById('in-dist').value,
-                addr: document.getElementById('in-addr').value,
-                email: document.getElementById('in-email').value,
-                year: document.getElementById('in-year').value,
-                room: document.getElementById('in-room').value,
-                absTitle: document.getElementById('abs-title').value,
-                absMapel: document.getElementById('abs-mapel').value,
-                absDate: document.getElementById('abs-date').value,
-                absTime: document.getElementById('abs-time').value,
-                absCity: document.getElementById('abs-city').value,
-                absP1: document.getElementById('abs-p1-name').value,
-                absNip: document.getElementById('abs-p1-nip').value,
-                schoolLogo
+                students, school: document.getElementById('in-school').value, dist: document.getElementById('in-dist').value,
+                addr: document.getElementById('in-addr').value, email: document.getElementById('in-email').value,
+                year: document.getElementById('in-year').value, room: document.getElementById('in-room').value,
+                absTitle: document.getElementById('abs-title').value, absMapel: document.getElementById('abs-mapel').value,
+                absDate: document.getElementById('abs-date').value, absTime: document.getElementById('abs-time').value,
+                absCity: document.getElementById('abs-city').value, absP1: document.getElementById('abs-p1-name').value,
+                absNip: document.getElementById('abs-p1-nip').value, schoolLogo
             };
             localStorage.setItem('precision_psaj_v3', JSON.stringify(data));
         }
@@ -819,30 +710,26 @@
             if(saved) {
                 const d = JSON.parse(saved);
                 students = d.students || [];
-                document.getElementById('in-school').value = d.school || '';
-                document.getElementById('in-dist').value = d.dist || '';
-                document.getElementById('in-addr').value = d.addr || '';
-                document.getElementById('in-email').value = d.email || '';
-                document.getElementById('in-year').value = d.year || '';
-                document.getElementById('in-room').value = d.room || '01';
-                document.getElementById('abs-title').value = d.absTitle || '';
-                document.getElementById('abs-mapel').value = d.absMapel || '';
-                document.getElementById('abs-date').value = d.absDate || '';
-                document.getElementById('abs-time').value = d.absTime || '';
-                document.getElementById('abs-city').value = d.absCity || '';
-                document.getElementById('abs-p1-name').value = d.absP1 || '';
-                document.getElementById('abs-p1-nip').value = d.absNip || '';
+                document.getElementById('in-school').value = d.school;
+                document.getElementById('in-dist').value = d.dist;
+                document.getElementById('in-addr').value = d.addr;
+                document.getElementById('in-email').value = d.email;
+                document.getElementById('in-year').value = d.year;
+                document.getElementById('in-room').value = d.room;
+                document.getElementById('abs-title').value = d.absTitle;
+                document.getElementById('abs-mapel').value = d.absMapel;
+                document.getElementById('abs-date').value = d.absDate;
+                document.getElementById('abs-time').value = d.absTime;
+                document.getElementById('abs-city').value = d.absCity;
+                document.getElementById('abs-p1-name').value = d.absP1;
+                document.getElementById('abs-p1-nip').value = d.absNip;
                 schoolLogo = d.schoolLogo || LOGO_KAB_BEKASI;
             }
             updateUI();
         }
 
         async function clearData() {
-            if(confirm("Hapus semua data yang tersimpan?")) {
-                localStorage.removeItem('precision_psaj_v3');
-                await clearPhotosDB();
-                location.reload();
-            }
+            if(confirm("Hapus semua?")) { localStorage.removeItem('precision_psaj_v3'); await clearPhotosDB(); location.reload(); }
         }
 
         window.onload = loadLocal;
