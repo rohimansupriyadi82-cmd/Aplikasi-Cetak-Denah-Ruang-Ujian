@@ -139,30 +139,20 @@
                         <div class="guide-box">
                             <div class="guide-step">
                                 <b>1. Data Instansi</b>
-                                Isi nama sekolah, alamat, dan pilih status (Negeri/Swasta). Jika swasta, Anda wajib mengunggah Logo Sekolah. Data ini akan muncul otomatis di semua Kop Surat.
+                                Isi nama sekolah, alamat, dan pilih status (Negeri/Swasta). Data ini akan muncul otomatis di semua Kop Surat.
                             </div>
                             <div class="guide-step">
                                 <b>2. Persiapan Excel</b>
-                                Download "Template Excel". Isi kolom <b>No Peserta</b>, <b>NISN</b>, dan <b>Nama</b>. Jangan mengubah urutan kolom. Setelah diisi, upload kembali ke aplikasi.
+                                Download "Template Excel". Isi kolom <b>No Peserta</b>, <b>NISN</b>, dan <b>Nama</b>. Setelah diisi, upload kembali ke aplikasi.
                             </div>
                             <div class="guide-step">
                                 <b>3. Upload Foto Siswa</b>
-                                Pastikan file foto diberi nama sesuai <b>NISN</b> atau <b>Nomor Peserta</b> (Contoh: 12345678.jpg). Masukkan semua foto ke dalam 1 file ZIP atau pilih banyak file sekaligus saat upload.
+                                Pastikan file foto diberi nama sesuai <b>NISN</b> atau <b>Nomor Peserta</b>. Masukkan foto ke ZIP atau pilih banyak file sekaligus.
                             </div>
                             <div class="guide-step">
-                                <b>4. Album & Denah</b>
-                                Pilih Mode "Album" atau "Denah". Atur tata letak Zigzag atau Vertikal. Aplikasi akan otomatis membagi siswa ke dalam ruangan (1 Ruangan per halaman).
-                            </div>
-                            <div class="guide-step">
-                                <b>5. Daftar Hadir & Pengawas</b>
-                                Atur Mata Pelajaran dan Tanggal. Jumlah baris pada Daftar Hadir akan menyesuaikan secara otomatis dengan jumlah siswa yang ada (Dinamis).
-                            </div>
-                            <div class="guide-step">
-                                <b>6. Teknik Cetak (Presisi F4)</b>
-                                - Tekan "Cetak Sekarang".<br>
-                                - Pilih Printer (Save as PDF juga bisa).<br>
-                                - Ukuran Kertas: <b>Legal / F4</b>.<br>
-                                - Scale/Skala: <b>100% (Default)</b>.<br>
+                                <b>4. Cetak (F4)</b>
+                                - Gunakan Kertas: <b>Legal / F4</b>.<br>
+                                - Skala: <b>100%</b>.<br>
                                 - Centang "Background Graphics".
                             </div>
                         </div>
@@ -266,21 +256,8 @@
             document.querySelectorAll('input, select').forEach(el => {
                 if(el.id && el.type !== 'file') configData[el.id] = el.value;
             });
-
-            const db = {
-                students: students,
-                photoMap: photoMap,
-                schoolLogo: schoolLogo,
-                config: configData
-            };
-            
-            try {
-                localStorage.setItem('PSAJ_PRECISION_DB', JSON.stringify(db));
-            } catch(e) {
-                // Simpan tanpa foto jika LocalStorage penuh
-                const fallbackDb = { ...db, photoMap: {} };
-                localStorage.setItem('PSAJ_PRECISION_DB', JSON.stringify(fallbackDb));
-            }
+            const db = { students, photoMap, schoolLogo, config: configData };
+            try { localStorage.setItem('PSAJ_PRECISION_DB', JSON.stringify(db)); } catch(e) {}
         }
 
         function loadFromLocalStorage() {
@@ -290,7 +267,6 @@
             students = data.students || [];
             photoMap = data.photoMap || {};
             schoolLogo = data.schoolLogo || LOGO_KAB_BEKASI;
-            
             for (let id in data.config) {
                 const el = document.getElementById(id);
                 if (el) el.value = data.config[id];
@@ -300,7 +276,7 @@
         }
 
         function clearData() {
-            if(confirm("Hapus semua data dan reset aplikasi?")) {
+            if(confirm("Hapus semua data?")) {
                 localStorage.removeItem('PSAJ_PRECISION_DB');
                 location.reload();
             }
@@ -310,16 +286,11 @@
             activeTab = m;
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('tab-' + m).classList.add('active');
-            
-            // Hide/Show Panels
             document.getElementById('panel-main').style.display = (m === 'main') ? 'block' : 'none';
             document.getElementById('panel-absen').style.display = (m === 'absen') ? 'block' : 'none';
             document.getElementById('panel-pengawas').style.display = (m === 'pengawas') ? 'block' : 'none';
             document.getElementById('panel-guide').style.display = (m === 'guide') ? 'block' : 'none';
-            
-            // Hide common settings if in guide mode
             document.getElementById('common-settings').style.display = (m === 'guide') ? 'none' : 'block';
-
             updateUI();
         }
 
@@ -365,7 +336,7 @@
             container.innerHTML = '';
             
             if (activeTab === 'guide') {
-                container.innerHTML = `<div style="padding: 100px; color: #64748b; font-weight: 700; text-align:center;">Halaman Panduan Aktif. Sila lihat Sidebar untuk instruksi lengkap.</div>`;
+                container.innerHTML = `<div style="padding: 100px; color: #64748b; font-weight: 700; text-align:center;">Halaman Panduan Aktif. Sila lihat Sidebar.</div>`;
                 return;
             }
 
@@ -377,15 +348,16 @@
             const perPage = (activeTab === 'main') ? parseInt(document.getElementById('in-perpage').value) : 20;
             
             if (students.length === 0) {
-                const emptyChunk = Array(perPage).fill(null);
-                if (activeTab === 'main') container.innerHTML = renderMainPage(emptyChunk, perPage, 0);
-                else container.innerHTML = renderAbsenPage(emptyChunk, perPage, 0);
+                // DATA DUMMY SESUAI INSTRUKSI (NISN 1234567890)
+                const dummyStudent = { no: "00-00-00-00", nisn: "1234567890", nama: "NAMA PESERTA CONTOH" };
+                const dummyChunk = Array(perPage).fill(dummyStudent);
+                if (activeTab === 'main') container.innerHTML = renderMainPage(dummyChunk, perPage, 0);
+                else container.innerHTML = renderAbsenPage(dummyChunk, perPage, 0);
                 return;
             }
 
             for (let i = 0; i < students.length; i += perPage) {
                 let chunk = students.slice(i, i + perPage);
-                
                 if (activeTab === 'main') {
                     const fullChunk = [...chunk];
                     while(fullChunk.length < perPage) fullChunk.push(null);
@@ -499,13 +471,7 @@
                 if (!s) return; 
                 const num = (pageIdx * perPage) + i + 1;
                 const ttd = num % 2 !== 0 ? `${num}. ................` : `<div style="padding-left:50px;">${num}. ................</div>`;
-                rows += `
-                <tr>
-                    <td align="center">${num}</td>
-                    <td align="center" style="font-size:9pt;">${s.no}</td>
-                    <td style="font-weight:700; font-size:9pt; text-transform:uppercase;">${s.nama}</td>
-                    <td><div class="zigzag-ttd">${ttd}</div></td>
-                </tr>`;
+                rows += `<tr><td align="center">${num}</td><td align="center" style="font-size:9pt;">${s.no}</td><td style="font-weight:700; font-size:9pt; text-transform:uppercase;">${s.nama}</td><td><div class="zigzag-ttd">${ttd}</div></td></tr>`;
             });
 
             return `
@@ -518,18 +484,11 @@
                     <tr><td>WAKTU</td><td colspan="3">: ${document.getElementById('abs-time').value}</td></tr>
                 </table>
                 <table class="abs-table">
-                    <thead>
-                        <tr><th width="40">NO</th><th width="140">NO PESERTA</th><th>NAMA PESERTA</th><th width="180">TANDA TANGAN</th></tr>
-                    </thead>
+                    <thead><tr><th width="40">NO</th><th width="140">NO PESERTA</th><th>NAMA PESERTA</th><th width="180">TANDA TANGAN</th></tr></thead>
                     <tbody>${rows}</tbody>
                 </table>
                 <div class="footer-sig">
-                    <div class="sig-box">
-                        ${document.getElementById('abs-city').value}, ${dateStr.split(',')[1] || ''}<br>
-                        Pengawas Ruang,<br><br><br><br>
-                        <b>${document.getElementById('abs-p-name').value}</b><br>
-                        NIP. ${document.getElementById('abs-p-nip').value}
-                    </div>
+                    <div class="sig-box">${document.getElementById('abs-city').value}, ${dateStr.split(',')[1] || ''}<br>Pengawas Ruang,<br><br><br><br><b>${document.getElementById('abs-p-name').value}</b><br>NIP. ${document.getElementById('abs-p-nip').value}</div>
                 </div>
             </div>`;
         }
@@ -575,15 +534,11 @@
                 const workbook = XLSX.read(data, {type: 'array'});
                 const sheet = workbook.Sheets[workbook.SheetNames[0]];
                 const json = XLSX.utils.sheet_to_json(sheet, {header: 1});
-                
-                students = json.slice(1)
-                    .filter(row => row[0] || row[1]) 
-                    .map(row => ({
-                        no: String(row[0] || '').trim(),
-                        nisn: String(row[1] || '').trim(),
-                        nama: String(row[2] || '').trim()
-                    }));
-                
+                students = json.slice(1).filter(row => row[0] || row[1]).map(row => ({
+                    no: String(row[0] || '').trim(),
+                    nisn: String(row[1] || '').trim(),
+                    nama: String(row[2] || '').trim()
+                }));
                 saveAndRefresh();
                 alert("Berhasil mengimpor " + students.length + " siswa.");
             };
@@ -592,55 +547,33 @@
 
         document.getElementById('import-photos').addEventListener('change', async function(e) {
             const files = e.target.files;
-            if(!files.length) return;
-
             for (let f of files) {
                 if (f.name.toLowerCase().endsWith('.zip')) {
                     const zip = await JSZip.loadAsync(f);
-                    const fileKeys = Object.keys(zip.files);
-                    for (let name of fileKeys) {
-                        const fileData = zip.files[name];
-                        if (!fileData.dir) {
-                            const blob = await fileData.async("blob");
-                            const b64 = await new Promise(resolve => {
-                                const rd = new FileReader();
-                                rd.onload = () => resolve(rd.result);
-                                rd.readAsDataURL(blob);
-                            });
-                            const cleanName = name.split('/').pop().split('.')[0].trim();
-                            photoMap[cleanName] = b64;
+                    for (let name in zip.files) {
+                        if (!zip.files[name].dir) {
+                            const b64 = await zip.files[name].async("base64");
+                            photoMap[name.split('/').pop().split('.')[0].trim()] = "data:image/jpeg;base64," + b64;
                         }
                     }
                 } else {
-                    const b64 = await new Promise(resolve => {
-                        const rd = new FileReader();
-                        rd.onload = () => resolve(rd.result);
-                        rd.readAsDataURL(f);
-                    });
-                    const cleanName = f.name.split('.')[0].trim();
-                    photoMap[cleanName] = b64;
+                    const reader = new FileReader();
+                    reader.onload = (ev) => { photoMap[f.name.split('.')[0].trim()] = ev.target.result; saveAndRefresh(); };
+                    reader.readAsDataURL(f);
                 }
             }
-            saveAndRefresh();
             alert("Foto berhasil diunggah.");
         });
 
         function downloadTemplate() {
             const wb = XLSX.utils.book_new();
-            const data = [
-                ["No Peserta", "NISN", "Nama Peserta"],
-                ["24-01-01-001", "1234567890", "AHMAD SUBARJO"],
-                ["24-01-01-002", "0987654321", "SITI AMINAH"]
-            ];
+            const data = [["No Peserta", "NISN", "Nama Peserta"], ["24-01-01-001", "1234567890", "CONTOH NAMA"]];
             const ws = XLSX.utils.aoa_to_sheet(data);
-            XLSX.utils.book_append_sheet(wb, ws, "Data Siswa");
-            XLSX.writeFile(wb, "Template_Data_PSAJ.xlsx");
+            XLSX.utils.book_append_sheet(wb, ws, "Data");
+            XLSX.writeFile(wb, "Template_PSAJ.xlsx");
         }
 
-        window.onload = () => {
-            loadFromLocalStorage();
-            togglePengawasInputs();
-        };
+        window.onload = () => { loadFromLocalStorage(); togglePengawasInputs(); };
     </script>
 </body>
 </html>
