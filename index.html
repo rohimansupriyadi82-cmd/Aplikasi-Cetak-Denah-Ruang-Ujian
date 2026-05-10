@@ -15,7 +15,7 @@
             --accent: #10b981;
             --bg-canvas: #f1f5f9;
             --light-green: #f0fff4; 
-            --purple-shaded: #b4a7d6; /* Warna ungu sesuai gambar */
+            --purple-shaded: #b4a7d6; 
         }
 
         * { box-sizing: border-box; -webkit-print-color-adjust: exact; }
@@ -26,7 +26,7 @@
             background-color: var(--bg-canvas); color: #1e293b;
         }
 
-        /* SIDEBAR STYLING */
+        /* SIDEBAR STYLING - TETAP DIPERTAHANKAN */
         .sidebar {
             width: var(--sidebar-width); height: 100vh;
             background: var(--primary); position: fixed;
@@ -60,7 +60,7 @@
         /* PREVIEW AREA */
         .main-content { margin-left: var(--sidebar-width); flex-grow: 1; padding: 30px; display: flex; flex-direction: column; align-items: center; }
 
-        /* PAPER F4 PRECISION (215x330mm) */
+        /* PAPER F4 (215x330mm) */
         .page {
             width: 215mm; height: 330mm;
             padding: 10mm 15mm; background: white;
@@ -77,70 +77,42 @@
         .header h2 { margin: 1px 0; font-size: 17pt; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
         .header p { margin: 1px 0; font-size: 8.5pt; font-weight: 600; line-height: 1.2; }
 
+        /* PHOTO GRID */
+        .photo-grid { display: grid; gap: 10px 12px; justify-content: center; flex-grow: 1; align-content: flex-start; width: 100%; }
+
+        /* MEJA PENGAWAS */
+        .meja-pengawas { align-self: flex-start; margin: 5mm 0 10mm 5mm; padding: 8px 15px; border: 1.5px solid #000; background: #d9d2e9; font-weight: 800; font-size: 11pt; text-transform: uppercase; }
+
+        /* STUDENT CARD (ALBUM) */
+        .student-card { width: 4cm; display: flex; flex-direction: column; align-items: center; }
+        .photo-frame { width: 3cm; height: 3.8cm; border: 1px solid #000; background: #fff; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .id-label { margin-top: 3px; background: #ffff00; border: 1.2px solid #000; width: 3.8cm; text-align: center; font-weight: 800; font-size: 8.5pt; padding: 2px 0; }
+
+        /* DENAH CARD */
+        .denah-card { width: 4.2cm; height: 4.2cm; border: 1.5px solid #000; display: flex; flex-direction: column; background: #fff; overflow: hidden; }
+        .denah-row-1 { border-bottom: 1.5px solid #000; text-align: center; font-size: 8pt; font-weight: 800; padding: 4px 0; background: #fff; }
+        .denah-row-2 { border-bottom: 1.5px solid #000; text-align: center; font-size: 10.5pt; font-weight: 900; padding: 5px 0; background: #fff; }
+        .denah-row-bottom { display: flex; flex-grow: 1; }
+        .denah-box-photo { flex: 1; border-right: 1.5px solid #000; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .denah-box-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .denah-box-name { flex: 1; background: var(--purple-shaded); display: flex; align-items: center; justify-content: center; padding: 4px; text-align: center; font-size: 7pt; font-weight: 800; line-height: 1.1; text-transform: uppercase; word-break: break-word; }
+
         /* TABLES */
         .abs-table { width: 100%; border-collapse: collapse; border: 1.5px solid #000; table-layout: fixed; }
         .abs-table th { background: #eeeeee; border: 1px solid #000; padding: 6px; font-size: 8.5pt; text-transform: uppercase; }
-        .abs-table td { border: 1px solid #000; padding: 0 8px; font-size: 10pt; height: 10.2mm; vertical-align: middle; }
+        .abs-table td { border: 1px solid #000; padding: 0 8px; font-size: 10pt; height: 10.2mm; vertical-align: middle; overflow: hidden; }
         .abs-table tbody tr:nth-child(even) { background-color: var(--light-green); } 
-        
-        .zigzag-ttd { display: flex; align-items: center; width: 100%; height: 100%; font-size: 9pt; font-weight: 700; }
+        .zigzag-ttd { display: flex; align-items: center; width: 100%; height: 100%; font-size: 9pt; font-weight: 700; white-space: nowrap; }
 
-        .footer-sig { margin-top: auto; display: flex; justify-content: flex-end; padding-bottom: 5mm; padding-right: 15mm; }
+        /* FOOTER SIGNATURE - PERBAIKAN POSISI NAIK SEDIKIT */
+        .footer-sig { 
+            margin-top: 15px; /* Dikurangi dari 30px ke 15px agar naik */
+            display: flex; 
+            justify-content: flex-end; 
+            padding-right: 10mm; 
+        }
         .sig-box { min-width: 250px; font-size: 10pt; text-align: center; line-height: 1.3; }
-
-        /* PHOTO GRID */
-        .photo-grid { display: grid; gap: 10px 15px; justify-items: center; flex-grow: 1; align-content: flex-start; width: 100%; }
-
-        /* MEJA PENGAWAS */
-        .meja-pengawas {
-            align-self: flex-start;
-            margin-bottom: 25px;
-            padding: 8px 15px;
-            border: 2px solid #000;
-            background: #d9d2e9;
-            font-weight: 800;
-            font-size: 11pt;
-            text-transform: uppercase;
-        }
-        
-        /* STUDENT CARD (ALBUM MODE) */
-        .student-card { width: 4.1cm; display: flex; flex-direction: column; align-items: center; }
-        .photo-frame { width: 3cm; height: 3.8cm; border: 1px solid #000; background: #fff; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
-        .id-label { margin-top: 3px; background: #ffff00; border: 1.2px solid #000; width: 3.6cm; text-align: center; font-weight: 800; font-size: 8.5pt; padding: 2px 0; }
-
-        /* DENAH CARD (FORMAT BARU SESUAI GAMBAR) */
-        .denah-card { 
-            width: 4.6cm; height: 4.5cm; border: 2px solid #000; 
-            display: flex; flex-direction: column;
-            background: #fff; overflow: hidden;
-        }
-        .denah-row-1 {
-            border-bottom: 2px solid #000;
-            text-align: center; font-size: 8.5pt; font-weight: 800;
-            padding: 4px 0; background: #fff;
-        }
-        .denah-row-2 {
-            border-bottom: 2px solid #000;
-            text-align: center; font-size: 11pt; font-weight: 900;
-            padding: 6px 0; background: #fff;
-        }
-        .denah-row-bottom {
-            display: flex; flex-grow: 1;
-        }
-        .denah-box-photo {
-            flex: 1; border-right: 2px solid #000;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-        }
-        .denah-box-photo img { width: 100%; height: 100%; object-fit: cover; }
-        .denah-box-name {
-            flex: 1; background: var(--purple-shaded);
-            display: flex; align-items: center; justify-content: center;
-            padding: 5px; text-align: center;
-            font-size: 7.5pt; font-weight: 800; line-height: 1.1;
-            text-transform: uppercase; word-break: break-word;
-        }
 
         @media print {
             @page { size: 215mm 330mm; margin: 0; }
@@ -170,13 +142,13 @@
                 <div class="accordion-header active" onclick="toggleAccordion(this)"><i>🏢 DATA INSTANSI (SENTRAL)</i><span>▼</span></div>
                 <div class="accordion-content show">
                     <div class="form-group"><label>Status Sekolah</label><select id="in-status" onchange="handleStatusChange()"><option value="negeri">Negeri (Kab. Bekasi)</option><option value="swasta">Swasta (Kustom)</option></select></div>
-                    <div class="form-group" id="yayasan-group" style="display:none;"><label>Nama Yayasan</label><input type="text" id="in-yayasan" value="YAYASAN PENDIDIKAN ISLAM" oninput="updateUI()"></div>
+                    <div class="form-group" id="yayasan-group" style="display:none;"><label>Nama Yayasan</label><input type="text" id="in-yayasan" value="YAYASAN PENDIDIKAN ISLAM" oninput="saveAndRefresh()"></div>
                     <div class="form-group" id="logo-upload-group" style="display:none;"><label>Upload Logo</label><input type="file" id="in-logo" accept="image/*" onchange="handleLogo(this)"></div>
-                    <div class="form-group"><label>Nama Sekolah</label><input type="text" id="in-school" value="SDN MUARA BAKTI 01" oninput="updateUI()"></div>
-                    <div class="form-group"><label>Kecamatan</label><input type="text" id="in-dist" value="KECAMATAN BABELAN" oninput="updateUI()"></div>
-                    <div class="form-group"><label>Alamat</label><input type="text" id="in-addr" value="Jl. Bayangkara Rt. 12/07 Ds. Muara Bakti Kec. Babelan Kab. Bekasi" oninput="updateUI()"></div>
-                    <div class="form-group"><label>Email</label><input type="text" id="in-email" value="sdnmuarabakti01@gmail.com" oninput="updateUI()"></div>
-                    <div class="form-group"><label>Tahun Pelajaran</label><input type="text" id="in-year" value="2025/2026" oninput="updateUI()"></div>
+                    <div class="form-group"><label>Nama Sekolah</label><input type="text" id="in-school" value="SDN MUARA BAKTI 01" oninput="saveAndRefresh()"></div>
+                    <div class="form-group"><label>Kecamatan</label><input type="text" id="in-dist" value="KECAMATAN BABELAN" oninput="saveAndRefresh()"></div>
+                    <div class="form-group"><label>Alamat</label><input type="text" id="in-addr" value="Jl. Bayangkara Rt. 12/07 Ds. Muara Bakti Kec. Babelan Kab. Bekasi" oninput="saveAndRefresh()"></div>
+                    <div class="form-group"><label>Email</label><input type="text" id="in-email" value="sdnmuarabakti01@gmail.com" oninput="saveAndRefresh()"></div>
+                    <div class="form-group"><label>Tahun Pelajaran</label><input type="text" id="in-year" value="2025/2026" oninput="saveAndRefresh()"></div>
                 </div>
             </div>
 
@@ -189,12 +161,12 @@
                         <div class="form-group"><label>1. Upload Excel</label><input type="file" id="import-excel" accept=".xlsx, .xls"></div>
                         <div class="form-group"><label>2. Upload ZIP Foto</label><input type="file" id="import-photos" multiple accept="image/*, .zip"></div>
                         <hr style="border: 0.5px solid rgba(255,255,255,0.1);">
-                        <div class="form-group"><label>Judul Album Foto</label><input type="text" id="title-album" value="ALBUM FOTO PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Judul Denah Tempat Duduk</label><input type="text" id="title-denah" value="DENAH TEMPAT DUDUK PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Mode Dokumen</label><select id="in-mode" onchange="updateUI()"><option value="album">Album Foto Peserta</option><option value="denah">Denah Kursi Peserta</option></select></div>
-                        <div class="form-group"><label>Tata Letak (Urutan)</label><select id="in-layout" onchange="updateUI()"><option value="zigzag">Zigzag (Sesuai Gambar)</option><option value="vertical">Vertical (Kolom)</option></select></div>
-                        <div class="form-group"><label>Siswa Per Halaman</label><select id="in-perpage" onchange="updateUI()"><option value="20">20 Siswa (4 Kolom)</option><option value="15">15 Siswa (3 Kolom)</option></select></div>
-                        <div class="form-group"><label>Ruangan Mulai</label><input type="number" id="in-room" value="1" oninput="updateUI()"></div>
+                        <div class="form-group"><label>Judul Album Foto</label><input type="text" id="title-album" value="ALBUM FOTO PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Judul Denah Tempat Duduk</label><input type="text" id="title-denah" value="DENAH TEMPAT DUDUK PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Mode Dokumen</label><select id="in-mode" onchange="saveAndRefresh()"><option value="album">Album Foto Peserta</option><option value="denah">Denah Kursi Peserta</option></select></div>
+                        <div class="form-group"><label>Tata Letak (Urutan)</label><select id="in-layout" onchange="saveAndRefresh()"><option value="zigzag">Zigzag (Sesuai Gambar)</option><option value="vertical">Vertical (Kolom)</option></select></div>
+                        <div class="form-group"><label>Siswa Per Halaman</label><select id="in-perpage" onchange="saveAndRefresh()"><option value="20">20 Siswa (4 Kolom)</option><option value="15">15 Siswa (3 Kolom)</option></select></div>
+                        <div class="form-group"><label>Ruangan Mulai</label><input type="number" id="in-room" value="1" oninput="saveAndRefresh()"></div>
                     </div>
                 </div>
             </div>
@@ -204,13 +176,13 @@
                 <div class="accordion-item">
                     <div class="accordion-header active" onclick="toggleAccordion(this)"><i>📝 SETTING DAFTAR HADIR SISWA</i><span>▼</span></div>
                     <div class="accordion-content show">
-                        <div class="form-group"><label>Judul Daftar Hadir Peserta</label><input type="text" id="title-absen" value="DAFTAR HADIR PESERTA PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Mata Pelajaran</label><input type="text" id="abs-mapel" value="BAHASA INDONESIA" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Hari, Tanggal</label><input type="text" id="abs-date" value="Senin, 11 Mei 2026" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Waktu</label><input type="text" id="abs-time" value="08.00 - 09.30" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Kota/Titi Mangsa</label><input type="text" id="abs-city" value="Babelan" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Nama Pengawas</label><input type="text" id="abs-p-name" value="NAMA PENGAWAS" oninput="updateUI()"></div>
-                        <div class="form-group"><label>NIP Pengawas</label><input type="text" id="abs-p-nip" value="19870101 202001 1 001" oninput="updateUI()"></div>
+                        <div class="form-group"><label>Judul Daftar Hadir Peserta</label><input type="text" id="title-absen" value="DAFTAR HADIR PESERTA PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Mata Pelajaran</label><input type="text" id="abs-mapel" value="BAHASA INDONESIA" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Hari, Tanggal</label><input type="text" id="abs-date" value="Senin, 11 Mei 2026" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Waktu</label><input type="text" id="abs-time" value="08.00 - 09.30" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Kota/Titi Mangsa</label><input type="text" id="abs-city" value="Babelan" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Nama Pengawas</label><input type="text" id="abs-p-name" value="NAMA PENGAWAS" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>NIP Pengawas</label><input type="text" id="abs-p-nip" value="19870101 202001 1 001" oninput="saveAndRefresh()"></div>
                     </div>
                 </div>
             </div>
@@ -220,10 +192,10 @@
                 <div class="accordion-item">
                     <div class="accordion-header active" onclick="toggleAccordion(this)"><i>👨‍🏫 SETTING DAFTAR HADIR PENGAWAS</i><span>▼</span></div>
                     <div class="accordion-content show">
-                        <div class="form-group"><label>Judul Daftar Hadir Pengawas</label><input type="text" id="title-pengawas" value="DAFTAR HADIR PENGAWAS PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Mata Pelajaran (Pengawas)</label><input type="text" id="p-mapel" value="BAHASA INDONESIA" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Hari, Tanggal (Pengawas)</label><input type="text" id="p-date" value="Senin, 11 Mei 2026" oninput="updateUI()"></div>
-                        <div class="form-group"><label>Waktu (Pengawas)</label><input type="text" id="p-time" value="08.00 - 09.30" oninput="updateUI()"></div>
+                        <div class="form-group"><label>Judul Daftar Hadir Pengawas</label><input type="text" id="title-pengawas" value="DAFTAR HADIR PENGAWAS PENILAIAN SUMATIF AKHIR JENJANG (PSAJ)" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Mata Pelajaran (Pengawas)</label><input type="text" id="p-mapel" value="BAHASA INDONESIA" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Hari, Tanggal (Pengawas)</label><input type="text" id="p-date" value="Senin, 11 Mei 2026" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Waktu (Pengawas)</label><input type="text" id="p-time" value="08.00 - 09.30" oninput="saveAndRefresh()"></div>
                         <hr style="border: 0.5px solid rgba(255,255,255,0.1);">
                         <div class="form-group">
                             <label>Format List</label>
@@ -236,8 +208,8 @@
                         </div>
                         <div id="p-inputs-container"></div>
                         <hr style="border: 0.5px solid rgba(255,255,255,0.1);">
-                        <div class="form-group"><label>Ketua Panitia</label><input type="text" id="p-ketua" value="ROHIMAN KHAN" oninput="updateUI()"></div>
-                        <div class="form-group"><label>NIP Ketua</label><input type="text" id="p-nip" value="198412182025211003" oninput="updateUI()"></div>
+                        <div class="form-group"><label>Ketua Panitia</label><input type="text" id="p-ketua" value="ROHIMAN KHAN" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>NIP Ketua</label><input type="text" id="p-nip" value="198412182025211003" oninput="saveAndRefresh()"></div>
                     </div>
                 </div>
             </div>
@@ -257,6 +229,51 @@
         let schoolLogo = LOGO_KAB_BEKASI;
         let activeTab = 'main';
 
+        // PERSISTENCE LOGIC
+        function saveAndRefresh() {
+            saveToLocalStorage();
+            updateUI();
+        }
+
+        function saveToLocalStorage() {
+            const data = {
+                students: students,
+                photoMap: photoMap,
+                schoolLogo: schoolLogo,
+                config: {}
+            };
+            document.querySelectorAll('input, select').forEach(el => {
+                if(el.id && el.type !== 'file') data.config[el.id] = el.value;
+            });
+            localStorage.setItem('PSAJ_PRECISION_DATA', JSON.stringify(data));
+        }
+
+        function loadFromLocalStorage() {
+            const stored = localStorage.getItem('PSAJ_PRECISION_DATA');
+            if (!stored) return;
+            const data = JSON.parse(stored);
+            students = data.students || [];
+            photoMap = data.photoMap || {};
+            schoolLogo = data.schoolLogo || LOGO_KAB_BEKASI;
+            
+            for (let id in data.config) {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.value = data.config[id];
+                    if(id === 'in-status') handleStatusChange(false);
+                }
+            }
+            updateUI();
+        }
+
+        function clearData() {
+            if(confirm("Hapus semua data dan reset aplikasi?")) {
+                localStorage.removeItem('PSAJ_PRECISION_DATA');
+                location.reload();
+            }
+        }
+
+        // NAVIGATION
         function switchMode(m) {
             activeTab = m;
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
@@ -272,18 +289,18 @@
             h.nextElementSibling.classList.toggle('show');
         }
 
-        function handleStatusChange() {
+        function handleStatusChange(refresh = true) {
             const s = document.getElementById('in-status').value;
             document.getElementById('yayasan-group').style.display = (s === 'swasta') ? 'block' : 'none';
             document.getElementById('logo-upload-group').style.display = (s === 'swasta') ? 'block' : 'none';
             if (s !== 'swasta') schoolLogo = LOGO_KAB_BEKASI;
-            updateUI();
+            if (refresh) saveAndRefresh();
         }
 
         function handleLogo(input) {
             if (input.files && input.files[0]) {
                 const reader = new FileReader();
-                reader.onload = (e) => { schoolLogo = e.target.result; updateUI(); }
+                reader.onload = (e) => { schoolLogo = e.target.result; saveAndRefresh(); }
                 reader.readAsDataURL(input.files[0]);
             }
         }
@@ -292,25 +309,25 @@
             let val = document.getElementById('p-format').value;
             let count = val === '2-2' ? 2 : parseInt(val);
             const container = document.getElementById('p-inputs-container');
+            const currentVals = {};
+            container.querySelectorAll('input').forEach(i => currentVals[i.id] = i.value);
+            
             container.innerHTML = '';
             for(let i=1; i<=count; i++) {
-                container.innerHTML += `<div class="form-group"><label>Pengawas ${i}</label><input type="text" id="p-name-${i}" placeholder="Nama Pengawas ${i}" oninput="updateUI()"></div>`;
+                const id = `p-name-${i}`;
+                const val = currentVals[id] || "";
+                container.innerHTML += `<div class="form-group"><label>Pengawas ${i}</label><input type="text" id="${id}" value="${val}" placeholder="Nama Pengawas ${i}" oninput="saveAndRefresh()"></div>`;
             }
             updateUI();
         }
 
+        // RENDERING ENGINE
         function updateUI() {
             const container = document.getElementById('pages-container');
             container.innerHTML = '';
-            
-            if (activeTab === 'pengawas') {
-                container.innerHTML = renderPengawasPage();
-                return;
-            }
-
+            if (activeTab === 'pengawas') { container.innerHTML = renderPengawasPage(); return; }
             const perPage = (activeTab === 'main') ? parseInt(document.getElementById('in-perpage').value) : 20;
             const data = students.length > 0 ? students : Array(perPage).fill(null);
-
             for (let i = 0; i < data.length; i += perPage) {
                 const chunk = data.slice(i, i + perPage);
                 const pageIdx = Math.floor(i / perPage);
@@ -321,38 +338,30 @@
 
         function renderKop() {
             const status = document.getElementById('in-status').value;
-            const school = document.getElementById('in-school').value;
-            const dist = document.getElementById('in-dist').value;
-            const addr = document.getElementById('in-addr').value;
-            const email = document.getElementById('in-email').value;
-
             return `
             <div class="header">
                 <img class="logo-img" src="${schoolLogo}">
                 <h1>PEMERINTAH KABUPATEN BEKASI</h1>
                 <h1>DINAS PENDIDIKAN</h1>
                 ${status === 'swasta' ? `<h1>${document.getElementById('in-yayasan').value}</h1>` : ''}
-                <h2>${school}</h2>
-                <h1>${dist}</h1>
-                <p>${addr}</p>
-                <p style="color:blue; text-decoration:underline;">Email: ${email}</p>
+                <h2>${document.getElementById('in-school').value}</h2>
+                <h1>${document.getElementById('in-dist').value}</h1>
+                <p>${document.getElementById('in-addr').value}</p>
+                <p style="color:blue; text-decoration:underline;">Email: ${document.getElementById('in-email').value}</p>
             </div>`;
         }
 
         function renderMainPage(chunk, perPage, pageIdx) {
             const mode = document.getElementById('in-mode').value;
             const layout = document.getElementById('in-layout').value;
-            const year = document.getElementById('in-year').value;
             const startRoom = parseInt(document.getElementById('in-room').value || 1);
             const currentRoom = (startRoom + pageIdx).toString().padStart(3, '0');
             const cols = (perPage == 15) ? 3 : 4;
-            const displayTitle = (mode === 'album') ? document.getElementById('title-album').value : document.getElementById('title-denah').value;
-
-            // Logika Penyusunan
+            const title = (mode === 'album') ? document.getElementById('title-album').value : document.getElementById('title-denah').value;
+            
             let ordered = new Array(perPage).fill(null);
             if (layout === 'vertical') {
-                let count = 0;
-                let numRows = perPage / cols;
+                let count = 0; let numRows = perPage / cols;
                 for (let c = 0; c < cols; c++) {
                     for (let r = 0; r < numRows; r++) {
                         let targetIdx = (r * cols) + c;
@@ -360,46 +369,22 @@
                     }
                 }
             } else {
-                // Zigzag Sesuai Gambar (Snake Pattern: 1,2,3,4 then 8,7,6,5)
-                let count = 0;
-                let numRows = perPage / cols;
+                let count = 0; let numRows = perPage / cols;
                 for (let r = 0; r < numRows; r++) {
-                    if (r % 2 === 0) { // Genap: Kiri ke Kanan
-                        for (let c = 0; c < cols; c++) {
-                            if (count < chunk.length) ordered[r * cols + c] = chunk[count++];
-                        }
-                    } else { // Ganjil: Kanan ke Kiri
-                        for (let c = cols - 1; c >= 0; c--) {
-                            if (count < chunk.length) ordered[r * cols + c] = chunk[count++];
-                        }
-                    }
+                    if (r % 2 === 0) { for (let c = 0; c < cols; c++) { if (count < chunk.length) ordered[r * cols + c] = chunk[count++]; } }
+                    else { for (let c = cols - 1; c >= 0; c--) { if (count < chunk.length) ordered[r * cols + c] = chunk[count++]; } }
                 }
             }
 
             let gridHtml = '';
             ordered.forEach(s => {
-                if (!s) { gridHtml += `<div class="${mode}-card" style="visibility:hidden"></div>`; return; }
-                const imgUrl = photoMap[s.nisn] || "";
-                const imgHtml = imgUrl ? `<img src="${imgUrl}">` : `<div style="font-size:6pt; opacity:0.3; text-align:center">FOTO<br>${s.nisn}</div>`;
-                
+                if (!s) { gridHtml += `<div style="width:4.2cm; visibility:hidden"></div>`; return; }
+                const img = photoMap[s.nisn] || "";
+                const imgTag = img ? `<img src="${img}">` : `<div style="font-size:6pt; opacity:0.3;">FOTO ${s.nisn}</div>`;
                 if (mode === 'album') {
-                    gridHtml += `
-                    <div class="student-card">
-                        <div class="photo-frame">${imgHtml}</div>
-                        <div class="id-label">${s.no}</div>
-                        <div style="font-size:7pt; font-weight:800; margin-top:2px;">NISN: ${s.nisn}</div>
-                    </div>`;
+                    gridHtml += `<div class="student-card"><div class="photo-frame">${imgTag}</div><div class="id-label">${s.no}</div><div style="font-size:7pt; font-weight:800; margin-top:2px;">NISN: ${s.nisn}</div></div>`;
                 } else {
-                    // DENAH FORMAT SESUAI GAMBAR
-                    gridHtml += `
-                    <div class="denah-card">
-                        <div class="denah-row-1">NOMOR PESERTA</div>
-                        <div class="denah-row-2">${s.no}</div>
-                        <div class="denah-row-bottom">
-                            <div class="denah-box-photo">${imgHtml}</div>
-                            <div class="denah-box-name">${s.nama}</div>
-                        </div>
-                    </div>`;
+                    gridHtml += `<div class="denah-card"><div class="denah-row-1">NOMOR PESERTA</div><div class="denah-row-2">${s.no}</div><div class="denah-row-bottom"><div class="denah-box-photo">${imgTag}</div><div class="denah-box-name">${s.nama}</div></div></div>`;
                 }
             });
 
@@ -407,7 +392,7 @@
             <div class="page">
                 ${renderKop()}
                 <div style="text-align:center; margin-bottom:10px;">
-                    <div style="border:1.5px solid #000; display:inline-block; padding:3px 15px; font-weight:800; font-size:9.5pt; text-transform:uppercase;">${displayTitle}</div>
+                    <div style="border:1.5px solid #000; display:inline-block; padding:3px 15px; font-weight:800; font-size:9.5pt; text-transform:uppercase;">${title}</div>
                     <div style="margin-top:5px; font-weight:700;">RUANGAN: <span style="border:2px solid #000; padding:1px 12px; font-size:14pt; background:#eee;">${currentRoom}</span></div>
                 </div>
                 ${mode === 'denah' ? '<div class="meja-pengawas">MEJA PENGAWAS</div>' : ''}
@@ -415,47 +400,35 @@
             </div>`;
         }
 
+        // RENDER DAFTAR HADIR DENGAN PERBAIKAN POSISI TTD NAIK
         function renderAbsenPage(chunk, perPage, pageIdx) {
-            const year = document.getElementById('in-year').value;
-            const mapel = document.getElementById('abs-mapel').value;
-            const date = document.getElementById('abs-date').value;
-            const time = document.getElementById('abs-time').value;
             const startRoom = parseInt(document.getElementById('in-room').value || 1);
             const currentRoom = (startRoom + pageIdx).toString().padStart(3, '0');
-            const displayTitle = document.getElementById('title-absen').value;
-
-            const filteredChunk = chunk.filter(s => s !== null);
+            const date = document.getElementById('abs-date').value;
+            const filtered = chunk.filter(s => s !== null);
+            let rows = '';
             
-            let rowsHtml = '';
-            filteredChunk.forEach((s, i) => {
+            filtered.forEach((s, i) => {
                 const num = (pageIdx * perPage) + i + 1;
-                const ttd = num % 2 !== 0 ? `${num}. .................` : `<div style="padding-left:50px;">${num}. .................</div>`;
-                rowsHtml += `<tr>
-                    <td align="center">${num}</td>
-                    <td align="center" style="font-size:9pt;">${s.no}</td>
-                    <td style="font-weight:700; font-size:9pt; text-transform:uppercase;">${s.nama}</td>
-                    <td><div class="zigzag-ttd">${ttd}</div></td>
-                </tr>`;
+                const ttd = num % 2 !== 0 ? `${num}. ................` : `<div style="padding-left:50px;">${num}. ................</div>`;
+                rows += `<tr><td align="center">${num}</td><td align="center" style="font-size:9pt;">${s.no}</td><td style="font-weight:700; font-size:9pt; text-transform:uppercase;">${s.nama}</td><td><div class="zigzag-ttd">${ttd}</div></td></tr>`;
             });
 
             if (students.length === 0) {
-                for(let i=0; i<20; i++) {
-                    const num = i + 1;
-                    const ttd = num % 2 !== 0 ? `${num}. .................` : `<div style="padding-left:50px;">${num}. .................</div>`;
-                    rowsHtml += `<tr><td align="center">${num}</td><td></td><td></td><td><div class="zigzag-ttd">${ttd}</div></td></tr>`;
-                }
+                for(let i=1; i<=20; i++) rows += `<tr><td align="center">${i}</td><td></td><td></td><td><div class="zigzag-ttd">${i % 2 !== 0 ? i+'. ....' : '<div style="padding-left:40px;">'+i+'. ....</div>'}</div></td></tr>`;
             }
 
             return `
             <div class="page">
                 ${renderKop()}
-                <div style="text-align:center; font-weight:800; font-size:11pt; margin-bottom:10px; text-transform:uppercase;">${displayTitle}</div>
+                <div style="text-align:center; font-weight:800; font-size:11pt; margin-bottom:10px; text-transform:uppercase;">${document.getElementById('title-absen').value}</div>
                 <table style="width:100%; margin-bottom:8px; font-weight:700; font-size:9.5pt;">
-                    <tr><td width="130">MATA PELAJARAN</td><td>: ${mapel}</td><td width="80">RUANG</td><td>: ${currentRoom}</td></tr>
-                    <tr><td>HARI, TANGGAL</td><td>: ${date}</td><td>TAHUN</td><td>: ${year}</td></tr>
-                    <tr><td>WAKTU</td><td colspan="3">: ${time}</td></tr>
+                    <tr><td width="130">MATA PELAJARAN</td><td>: ${document.getElementById('abs-mapel').value}</td><td width="80">RUANG</td><td>: ${currentRoom}</td></tr>
+                    <tr><td>HARI, TANGGAL</td><td>: ${date}</td><td>TAHUN</td><td>: ${document.getElementById('in-year').value}</td></tr>
+                    <tr><td>WAKTU</td><td colspan="3">: ${document.getElementById('abs-time').value}</td></tr>
                 </table>
-                <table class="abs-table"><thead><tr><th width="40">NO</th><th width="150">NO PESERTA</th><th>NAMA PESERTA</th><th width="190">TANDA TANGAN</th></tr></thead><tbody>${rowsHtml}</tbody></table>
+                <table class="abs-table"><thead><tr><th width="40">NO</th><th width="140">NO PESERTA</th><th>NAMA PESERTA</th><th width="180">TANDA TANGAN</th></tr></thead><tbody>${rows}</tbody></table>
+                
                 <div class="footer-sig">
                     <div class="sig-box">
                         ${document.getElementById('abs-city').value}, ${date.split(',')[1] || ''}<br>
@@ -469,56 +442,26 @@
 
         function renderPengawasPage() {
             const format = document.getElementById('p-format').value;
-            const year = document.getElementById('in-year').value;
-            const mapel = document.getElementById('p-mapel').value;
             const date = document.getElementById('p-date').value;
-            const time = document.getElementById('p-time').value;
-            const displayTitle = document.getElementById('title-pengawas').value;
-            
             let rowsHtml = '';
-            if(format === '2-2') {
-                for(let i=1; i<=2; i++) {
-                    const name = document.getElementById('p-name-'+i)?.value || "....................................";
-                    rowsHtml += `<tr><td align="center">${i}.</td><td style="text-transform:uppercase; font-weight:700;">${name}</td><td align="center" style="font-size:24pt; font-weight:900;">${i}</td><td><div class="zigzag-ttd">${i}. .....................</div></td></tr>`;
-                }
-            } else {
-                let count = parseInt(format);
-                for(let i=1; i<=count; i++) {
-                    const name = document.getElementById('p-name-'+i)?.value || "....................................";
-                    const roomCell = (i % 2 !== 0) ? `<td rowspan="2" align="center" style="font-size:28pt; font-weight:900;">${Math.ceil(i/2)}</td>` : '';
-                    const ttd = (i % 2 !== 0) ? `${i}. .....................` : `<div style="padding-left:60px;">${i}. .....................</div>`;
-                    rowsHtml += `<tr><td align="center">${i}.</td><td style="text-transform:uppercase; font-weight:700;">${name}</td>${roomCell}<td><div class="zigzag-ttd">${ttd}</div></td></tr>`;
-                }
+            let count = format === '2-2' ? 2 : parseInt(format);
+            for(let i=1; i<=count; i++) {
+                const name = document.getElementById(`p-name-${i}`)?.value || "....................................";
+                const roomCell = (format !== '2' && format !== '2-2' && i % 2 !== 0) ? `<td rowspan="2" align="center" style="font-size:24pt; font-weight:900;">${Math.ceil(i/2)}</td>` : (format === '2' || format === '2-2' ? `<td align="center" style="font-size:24pt; font-weight:900;">1</td>` : '');
+                const ttd = (i % 2 !== 0) ? `${i}. .....................` : `<div style="padding-left:60px;">${i}. .....................</div>`;
+                rowsHtml += `<tr><td align="center">${i}.</td><td style="text-transform:uppercase; font-weight:700;">${name}</td>${roomCell}<td><div class="zigzag-ttd">${ttd}</div></td></tr>`;
             }
-
-            return `
-            <div class="page">
-                ${renderKop()}
-                <div style="text-align:center; font-weight:800; font-size:12pt; margin-bottom:15px; text-transform:uppercase;">${displayTitle}</div>
-                <div style="margin-left: 50px; margin-bottom: 20px; font-weight: 700; font-size: 10.5pt;">
-                    <table border="0" cellpadding="4">
-                        <tr><td width="160">Mata Pelajaran</td><td>: ${mapel}</td></tr>
-                        <tr><td>Hari/Tanggal</td><td>: ${date}</td></tr>
-                        <tr><td>Jam</td><td>: ${time}</td></tr>
-                    </table>
-                </div>
-                <table class="abs-table">
-                    <thead><tr><th width="45">No.</th><th>Nama Pengawas</th><th width="90">Ruang</th><th width="220">Tanda Tangan</th></tr></thead>
-                    <tbody>${rowsHtml}</tbody>
-                </table>
-                <div class="footer-sig" style="margin-top:40px;">
-                    <div class="sig-box">Ketua Panitia Pelaksana<br><br><br><br><br><u><b>${document.getElementById('p-ketua').value}</b></u><br>NIP. ${document.getElementById('p-nip').value}</div>
-                </div>
-            </div>`;
+            return `<div class="page">${renderKop()}<div style="text-align:center; font-weight:800; font-size:12pt; margin-bottom:15px; text-transform:uppercase;">${document.getElementById('title-pengawas').value}</div><div style="margin-left: 50px; margin-bottom: 20px; font-weight: 700; font-size: 10.5pt;"><table border="0"><tr><td width="160">Mata Pelajaran</td><td>: ${document.getElementById('p-mapel').value}</td></tr><tr><td>Hari/Tanggal</td><td>: ${date}</td></tr><tr><td>Jam</td><td>: ${document.getElementById('p-time').value}</td></tr></table></div><table class="abs-table"><thead><tr><th width="45">No.</th><th>Nama Pengawas</th><th width="90">Ruang</th><th width="200">Tanda Tangan</th></tr></thead><tbody>${rowsHtml}</tbody></table><div class="footer-sig"><div class="sig-box">Ketua Panitia Pelaksana<br><br><br><br><br><u><b>${document.getElementById('p-ketua').value}</b></u><br>NIP. ${document.getElementById('p-nip').value}</div></div></div>`;
         }
 
+        // FILE HANDLERS
         document.getElementById('import-excel').addEventListener('change', function(e) {
             const reader = new FileReader();
             reader.onload = (event) => {
                 const workbook = XLSX.read(new Uint8Array(event.target.result), {type: 'array'});
                 const json = XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]], {header: 1});
                 students = json.slice(1).filter(r => r.length >= 2).map(r => ({ no: String(r[0]||''), nisn: String(r[1]||''), nama: String(r[2]||'') }));
-                updateUI();
+                saveAndRefresh();
             };
             reader.readAsArrayBuffer(e.target.files[0]);
         });
@@ -540,19 +483,20 @@
                     photoMap[f.name.split('.')[0]] = b64;
                 }
             }
-            updateUI();
+            saveAndRefresh();
         });
 
         function downloadTemplate() {
             const wb = XLSX.utils.book_new();
-            const ws = XLSX.utils.aoa_to_sheet([["No Peserta", "NISN", "Nama Peserta"], ["26-001-001-8", "1234567890", "ROHIMAN KHAN"]]);
+            const ws = XLSX.utils.aoa_to_sheet([["No Peserta", "NISN", "Nama Peserta"], ["26-001-001-8", "1234567890", "CONTOH NAMA"]]);
             XLSX.utils.book_append_sheet(wb, ws, "Data");
-            XLSX.writeFile(wb, "Template_PSAJ_Precision.xlsx");
+            XLSX.writeFile(wb, "Template_PSAJ.xlsx");
         }
 
-        function clearData() { if(confirm("Hapus semua data?")) { students = []; photoMap = {}; updateUI(); } }
-
-        window.onload = () => { togglePengawasInputs(); switchMode('main'); };
+        window.onload = () => {
+            loadFromLocalStorage();
+            togglePengawasInputs();
+        };
     </script>
 </body>
 </html>
