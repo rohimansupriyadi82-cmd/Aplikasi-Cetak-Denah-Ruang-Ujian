@@ -36,8 +36,8 @@
         .sidebar-header { padding: 25px; background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); border-bottom: 1px solid rgba(255,255,255,0.1); }
         .sidebar-header h3 { margin: 0; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; }
         
-        .nav-tabs { display: flex; background: rgba(0,0,0,0.2); padding: 5px; margin: 10px 15px; border-radius: 10px; gap: 5px; }
-        .nav-btn { flex: 1; padding: 10px 5px; border: none; border-radius: 8px; background: transparent; color: white; font-size: 9px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        .nav-tabs { display: grid; grid-template-columns: 1fr 1fr; background: rgba(0,0,0,0.2); padding: 5px; margin: 10px 15px; border-radius: 10px; gap: 5px; }
+        .nav-btn { padding: 10px 5px; border: none; border-radius: 8px; background: transparent; color: white; font-size: 9px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
         .nav-btn.active { background: var(--accent); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
         .sidebar-content { flex: 1; overflow-y: auto; padding: 15px; }
@@ -55,6 +55,11 @@
         .btn-blue { background: var(--accent); color: white; }
         .btn-outline { border: 1px solid rgba(255,255,255,0.3); background: transparent; color: #ffffff; }
 
+        /* Panduan Styling */
+        .guide-box { font-size: 11px; line-height: 1.6; color: #e2e8f0; }
+        .guide-step { margin-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .guide-step b { color: var(--accent); display: block; margin-bottom: 4px; text-transform: uppercase; }
+
         .created-by { text-align: center; font-size: 10px; opacity: 0.5; margin-top: 10px; padding-bottom: 20px; font-weight: 600; letter-spacing: 1px; }
 
         /* PREVIEW AREA */
@@ -70,26 +75,20 @@
             overflow: hidden; page-break-after: always; color: #000;
         }
 
-        /* HEADER */
         .header { text-align: center; border-bottom: 4px double #000; padding-bottom: 6px; margin-bottom: 10px; position: relative; flex-shrink: 0; }
         .logo-img { position: absolute; left: 10mm; top: 0; width: 85px; height: 100px; object-fit: contain; }
         .header h1 { margin: 0; font-size: 11.5pt; text-transform: uppercase; line-height: 1.2; font-weight: 700; }
         .header h2 { margin: 1px 0; font-size: 17pt; font-weight: 900; text-transform: uppercase; line-height: 1.1; }
         .header p { margin: 1px 0; font-size: 8.5pt; font-weight: 600; line-height: 1.2; }
 
-        /* PHOTO GRID */
         .photo-grid { display: grid; gap: 10px 12px; justify-content: center; flex-grow: 1; align-content: flex-start; width: 100%; }
-
-        /* MEJA PENGAWAS */
         .meja-pengawas { align-self: flex-start; margin: 5mm 0 8mm 5mm; padding: 8px 15px; border: 1.5px solid #000; background: #d9d2e9; font-weight: 800; font-size: 11pt; text-transform: uppercase; }
 
-        /* STUDENT CARD (ALBUM) */
         .student-card { width: 4cm; display: flex; flex-direction: column; align-items: center; }
         .photo-frame { width: 3cm; height: 3.8cm; border: 1px solid #000; background: #fff; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
         .photo-frame img { width: 100%; height: 100%; object-fit: cover; }
         .id-label { margin-top: 3px; background: #ffff00; border: 1.2px solid #000; width: 3.8cm; text-align: center; font-weight: 800; font-size: 8.5pt; padding: 2px 0; }
 
-        /* DENAH CARD */
         .denah-card { width: 4.2cm; height: 4.2cm; border: 1.5px solid #000; display: flex; flex-direction: column; background: #fff; overflow: hidden; }
         .denah-row-1 { border-bottom: 1.5px solid #000; text-align: center; font-size: 8pt; font-weight: 800; padding: 4px 0; background: #fff; }
         .denah-row-2 { border-bottom: 1.5px solid #000; text-align: center; font-size: 10.5pt; font-weight: 900; padding: 5px 0; background: #fff; }
@@ -98,14 +97,12 @@
         .denah-box-photo img { width: 100%; height: 100%; object-fit: cover; }
         .denah-box-name { flex: 1; background: var(--purple-shaded); display: flex; align-items: center; justify-content: center; padding: 4px; text-align: center; font-size: 7pt; font-weight: 800; line-height: 1.1; text-transform: uppercase; word-break: break-word; }
 
-        /* TABLES */
         .abs-table { width: 100%; border-collapse: collapse; border: 1.5px solid #000; table-layout: fixed; }
         .abs-table th { background: #eeeeee; border: 1px solid #000; padding: 6px; font-size: 8.5pt; text-transform: uppercase; }
         .abs-table td { border: 1px solid #000; padding: 0 8px; font-size: 10pt; height: 10.2mm; vertical-align: middle; overflow: hidden; }
         .abs-table tbody tr:nth-child(even) { background-color: var(--light-green); } 
         .zigzag-ttd { display: flex; align-items: center; width: 100%; height: 100%; font-size: 9pt; font-weight: 700; white-space: nowrap; }
 
-        /* FOOTER SIGNATURE */
         .footer-sig { margin-top: 15px; display: flex; justify-content: flex-end; padding-right: 10mm; }
         .sig-box { min-width: 250px; font-size: 10pt; text-align: center; line-height: 1.3; }
 
@@ -122,32 +119,75 @@
 
     <div class="sidebar no-print">
         <div class="sidebar-header">
-            <h3>CETAK PSAJ</h3>
+            <h3>PSAJ PRECISION F4</h3>
         </div>
 
         <div class="nav-tabs">
             <button class="nav-btn active" id="tab-main" onclick="switchMode('main')">Album & Denah</button>
-            <button class="nav-btn" id="tab-absen" onclick="switchMode('absen')">Daftar Hadir Siswa</button>
-            <button class="nav-btn" id="tab-pengawas" onclick="switchMode('pengawas')">Daftar Pengawas</button>
+            <button class="nav-btn" id="tab-absen" onclick="switchMode('absen')">Daftar Hadir</button>
+            <button class="nav-btn" id="tab-pengawas" onclick="switchMode('pengawas')">Pengawas</button>
+            <button class="nav-btn" id="tab-guide" onclick="switchMode('guide')">📖 Panduan</button>
         </div>
 
         <div class="sidebar-content">
-            <!-- 1. DATA INSTANSI -->
-            <div class="accordion-item">
-                <div class="accordion-header active" onclick="toggleAccordion(this)"><i>🏢 DATA INSTANSI (SENTRAL)</i><span>▼</span></div>
-                <div class="accordion-content show">
-                    <div class="form-group"><label>Status Sekolah</label><select id="in-status" onchange="handleStatusChange()"><option value="negeri">Negeri (Kab. Bekasi)</option><option value="swasta">Swasta (Kustom)</option></select></div>
-                    <div class="form-group" id="yayasan-group" style="display:none;"><label>Nama Yayasan</label><input type="text" id="in-yayasan" value="YAYASAN PENDIDIKAN ISLAM" oninput="saveAndRefresh()"></div>
-                    <div class="form-group" id="logo-upload-group" style="display:none;"><label>Upload Logo</label><input type="file" id="in-logo" accept="image/*" onchange="handleLogo(this)"></div>
-                    <div class="form-group"><label>Nama Sekolah</label><input type="text" id="in-school" value="SDN MUARA BAKTI 01" oninput="saveAndRefresh()"></div>
-                    <div class="form-group"><label>Kecamatan</label><input type="text" id="in-dist" value="KECAMATAN BABELAN" oninput="saveAndRefresh()"></div>
-                    <div class="form-group"><label>Alamat</label><input type="text" id="in-addr" value="Jl. Bayangkara Rt. 12/07 Ds. Muara Bakti Kec. Babelan Kab. Bekasi" oninput="saveAndRefresh()"></div>
-                    <div class="form-group"><label>Email</label><input type="text" id="in-email" value="sdnmuarabakti01@gmail.com" oninput="saveAndRefresh()"></div>
-                    <div class="form-group"><label>Tahun Pelajaran</label><input type="text" id="in-year" value="2025/2026" oninput="saveAndRefresh()"></div>
+            
+            <!-- PANEL PANDUAN -->
+            <div id="panel-guide" style="display:none;">
+                <div class="accordion-item">
+                    <div class="accordion-header active"><i>📖 PANDUAN LENGKAP APLIKASI</i></div>
+                    <div class="accordion-content show">
+                        <div class="guide-box">
+                            <div class="guide-step">
+                                <b>1. Data Instansi</b>
+                                Isi nama sekolah, alamat, dan pilih status (Negeri/Swasta). Jika swasta, Anda wajib mengunggah Logo Sekolah. Data ini akan muncul otomatis di semua Kop Surat.
+                            </div>
+                            <div class="guide-step">
+                                <b>2. Persiapan Excel</b>
+                                Download "Template Excel". Isi kolom <b>No Peserta</b>, <b>NISN</b>, dan <b>Nama</b>. Jangan mengubah urutan kolom. Setelah diisi, upload kembali ke aplikasi.
+                            </div>
+                            <div class="guide-step">
+                                <b>3. Upload Foto Siswa</b>
+                                Pastikan file foto diberi nama sesuai <b>NISN</b> atau <b>Nomor Peserta</b> (Contoh: 12345678.jpg). Masukkan semua foto ke dalam 1 file ZIP atau pilih banyak file sekaligus saat upload.
+                            </div>
+                            <div class="guide-step">
+                                <b>4. Album & Denah</b>
+                                Pilih Mode "Album" atau "Denah". Atur tata letak Zigzag atau Vertikal. Aplikasi akan otomatis membagi siswa ke dalam ruangan (1 Ruangan per halaman).
+                            </div>
+                            <div class="guide-step">
+                                <b>5. Daftar Hadir & Pengawas</b>
+                                Atur Mata Pelajaran dan Tanggal. Jumlah baris pada Daftar Hadir akan menyesuaikan secara otomatis dengan jumlah siswa yang ada (Dinamis).
+                            </div>
+                            <div class="guide-step">
+                                <b>6. Teknik Cetak (Presisi F4)</b>
+                                - Tekan "Cetak Sekarang".<br>
+                                - Pilih Printer (Save as PDF juga bisa).<br>
+                                - Ukuran Kertas: <b>Legal / F4</b>.<br>
+                                - Scale/Skala: <b>100% (Default)</b>.<br>
+                                - Centang "Background Graphics".
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 2. ALBUM & DENAH -->
+            <!-- DATA INSTANSI -->
+            <div id="common-settings">
+                <div class="accordion-item">
+                    <div class="accordion-header active" onclick="toggleAccordion(this)"><i>🏢 DATA INSTANSI (SENTRAL)</i><span>▼</span></div>
+                    <div class="accordion-content show">
+                        <div class="form-group"><label>Status Sekolah</label><select id="in-status" onchange="handleStatusChange()"><option value="negeri">Negeri (Kab. Bekasi)</option><option value="swasta">Swasta (Kustom)</option></select></div>
+                        <div class="form-group" id="yayasan-group" style="display:none;"><label>Nama Yayasan</label><input type="text" id="in-yayasan" value="YAYASAN PENDIDIKAN ISLAM" oninput="saveAndRefresh()"></div>
+                        <div class="form-group" id="logo-upload-group" style="display:none;"><label>Upload Logo</label><input type="file" id="in-logo" accept="image/*" onchange="handleLogo(this)"></div>
+                        <div class="form-group"><label>Nama Sekolah</label><input type="text" id="in-school" value="SDN MUARA BAKTI 01" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Kecamatan</label><input type="text" id="in-dist" value="KECAMATAN BABELAN" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Alamat</label><input type="text" id="in-addr" value="Jl. Bayangkara Rt. 12/07 Ds. Muara Bakti Kec. Babelan Kab. Bekasi" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Email</label><input type="text" id="in-email" value="sdnmuarabakti01@gmail.com" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Tahun Pelajaran</label><input type="text" id="in-year" value="2025/2026" oninput="saveAndRefresh()"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ALBUM & DENAH -->
             <div id="panel-main">
                 <div class="accordion-item">
                     <div class="accordion-header active" onclick="toggleAccordion(this)"><i>🖼️ SETTING ALBUM & DENAH</i><span>▼</span></div>
@@ -166,7 +206,7 @@
                 </div>
             </div>
 
-            <!-- Panel 3 & 4 -->
+            <!-- DAFTAR HADIR SISWA -->
             <div id="panel-absen" style="display:none;">
                 <div class="accordion-item">
                     <div class="accordion-header active" onclick="toggleAccordion(this)"><i>📝 SETTING DAFTAR HADIR SISWA</i><span>▼</span></div>
@@ -182,6 +222,7 @@
                 </div>
             </div>
 
+            <!-- DAFTAR PENGAWAS -->
             <div id="panel-pengawas" style="display:none;">
                 <div class="accordion-item">
                     <div class="accordion-header active" onclick="toggleAccordion(this)"><i>👨‍🏫 SETTING DAFTAR HADIR PENGAWAS</i><span>▼</span></div>
@@ -215,7 +256,6 @@
         let schoolLogo = LOGO_KAB_BEKASI;
         let activeTab = 'main';
 
-        // PERSISTENCE LOGIC
         function saveAndRefresh() {
             saveToLocalStorage();
             updateUI();
@@ -235,14 +275,11 @@
             };
             
             try {
-                // Gunakan JSON.stringify untuk menyimpan data kompleks
                 localStorage.setItem('PSAJ_PRECISION_DB', JSON.stringify(db));
             } catch(e) {
-                console.error("Gagal menyimpan ke LocalStorage: Kapasitas penuh (Foto terlalu banyak/besar).");
-                // Jika penuh, setidaknya simpan config dan students tanpa foto
-                const partialDb = { ...db, photoMap: {} };
-                localStorage.setItem('PSAJ_PRECISION_DB', JSON.stringify(partialDb));
-                alert("Peringatan: Data tersimpan tanpa foto karena memori browser penuh. Gunakan foto dengan ukuran lebih kecil.");
+                // Simpan tanpa foto jika LocalStorage penuh
+                const fallbackDb = { ...db, photoMap: {} };
+                localStorage.setItem('PSAJ_PRECISION_DB', JSON.stringify(fallbackDb));
             }
         }
 
@@ -273,9 +310,16 @@
             activeTab = m;
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.getElementById('tab-' + m).classList.add('active');
+            
+            // Hide/Show Panels
             document.getElementById('panel-main').style.display = (m === 'main') ? 'block' : 'none';
             document.getElementById('panel-absen').style.display = (m === 'absen') ? 'block' : 'none';
             document.getElementById('panel-pengawas').style.display = (m === 'pengawas') ? 'block' : 'none';
+            document.getElementById('panel-guide').style.display = (m === 'guide') ? 'block' : 'none';
+            
+            // Hide common settings if in guide mode
+            document.getElementById('common-settings').style.display = (m === 'guide') ? 'none' : 'block';
+
             updateUI();
         }
 
@@ -320,6 +364,11 @@
             const container = document.getElementById('pages-container');
             container.innerHTML = '';
             
+            if (activeTab === 'guide') {
+                container.innerHTML = `<div style="padding: 100px; color: #64748b; font-weight: 700; text-align:center;">Halaman Panduan Aktif. Sila lihat Sidebar untuk instruksi lengkap.</div>`;
+                return;
+            }
+
             if (activeTab === 'pengawas') { 
                 container.innerHTML = renderPengawasPage(); 
                 return; 
@@ -338,12 +387,10 @@
                 let chunk = students.slice(i, i + perPage);
                 
                 if (activeTab === 'main') {
-                    // Mode Album/Denah butuh kotak penuh agar layout tetap rapih (grid)
                     const fullChunk = [...chunk];
                     while(fullChunk.length < perPage) fullChunk.push(null);
                     container.innerHTML += renderMainPage(fullChunk, perPage, Math.floor(i/perPage));
                 } else {
-                    // Mode Daftar Hadir: HANYA tampilkan baris sebanyak jumlah siswa (chunk)
                     container.innerHTML += renderAbsenPage(chunk, perPage, Math.floor(i/perPage));
                 }
             }
@@ -449,9 +496,8 @@
             
             let rows = '';
             chunk.forEach((s, i) => {
+                if (!s) return; 
                 const num = (pageIdx * perPage) + i + 1;
-                if (!s) return; // Tidak merender baris jika data null
-
                 const ttd = num % 2 !== 0 ? `${num}. ................` : `<div style="padding-left:50px;">${num}. ................</div>`;
                 rows += `
                 <tr>
