@@ -60,7 +60,7 @@
         /* PREVIEW AREA */
         .main-content { margin-left: var(--sidebar-width); flex-grow: 1; padding: 30px; display: flex; flex-direction: column; align-items: center; }
 
-        /* PAPER F4 */
+        /* PAPER F4 - DIPASTIKAN PRESISI */
         .page {
             width: 215mm; height: 330mm;
             padding: 10mm 15mm; background: white;
@@ -191,7 +191,7 @@
                             <select id="p-format" onchange="togglePengawasInputs()">
                                 <option value="6">6 Pengawas (3 Ruang)</option>
                                 <option value="4" selected>4 Pengawas (2 Ruang)</option>
-                                <option value="2-2">2 Pengawas 2 Ruang (1 Per Ruang)</option> <!-- KEMBALI LIST INI -->
+                                <option value="2-2">2 Pengawas 2 Ruang (1 Per Ruang)</option>
                                 <option value="2">2 Pengawas (1 Ruang)</option>
                             </select>
                         </div>
@@ -332,7 +332,26 @@
         function renderKop() {
             const status = document.getElementById('in-status').value;
             const yayasan = document.getElementById('in-yayasan').value;
-            return `<div class="header"><img class="logo-img" src="${schoolLogo}"><h1>PEMERINTAH KABUPATEN BEKASI</h1><h1>DINAS PENDIDIKAN</h1>${status === 'swasta' ? `<h1>${yayasan}</h1>` : ''}<h2>${document.getElementById('in-school').value}</h2><h1>${document.getElementById('in-dist').value}</h1><p>${document.getElementById('in-addr').value}</p><p style="color:blue; text-decoration:underline; font-size:8pt;">Email: ${document.getElementById('in-email').value}</p></div>`;
+            const school = document.getElementById('in-school').value;
+            const dist = document.getElementById('in-dist').value;
+            const addr = document.getElementById('in-addr').value;
+            const email = document.getElementById('in-email').value;
+
+            let headerContent = "";
+            if(status === 'negeri'){
+                headerContent = `<h1>PEMERINTAH KABUPATEN BEKASI</h1><h1>DINAS PENDIDIKAN</h1>`;
+            } else {
+                headerContent = `<h1>${yayasan}</h1>`;
+            }
+
+            return `<div class="header">
+                <img class="logo-img" src="${schoolLogo}">
+                ${headerContent}
+                <h2>${school}</h2>
+                <h1>${dist}</h1>
+                <p>${addr}</p>
+                <p style="color:blue; text-decoration:underline; font-size:8pt;">Email: ${email}</p>
+            </div>`;
         }
 
         function renderMainPage(chunk, perPage, pageIdx) {
