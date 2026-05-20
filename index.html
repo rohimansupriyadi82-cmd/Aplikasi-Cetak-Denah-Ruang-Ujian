@@ -26,7 +26,7 @@
             background-color: var(--bg-canvas); color: #1e293b;
         }
 
-        /* SIDEBAR STYLING - PERTAHANKAN STRUKTUR */
+        /* SIDEBAR STYLING */
         .sidebar {
             width: var(--sidebar-width); height: 100vh;
             background: var(--primary); position: fixed;
@@ -145,6 +145,7 @@
                         <div class="form-group"><label>Kecamatan</label><input type="text" id="in-dist" value="KECAMATAN BABELAN" oninput="saveAndRefresh()"></div>
                         <div class="form-group"><label>Alamat</label><input type="text" id="in-addr" value="Jl. Bayangkara Rt. 12/07 Ds. Muara Bakti Kec. Babelan Kab. Bekasi" oninput="saveAndRefresh()"></div>
                         <div class="form-group"><label>Email</label><input type="text" id="in-email" value="sdnmuarabakti01@gmail.com" oninput="saveAndRefresh()"></div>
+                        <div class="form-group"><label>Kota/Kabupaten (Titimangsa)</label><input type="text" id="in-city" value="Babelan" oninput="saveAndRefresh()"></div>
                         <div class="form-group"><label>Tahun Pelajaran</label><input type="text" id="in-year" value="2025/2026" oninput="saveAndRefresh()"></div>
                     </div>
                 </div>
@@ -188,7 +189,6 @@
 
                         <p style="font-size: 10px; color: #fbbf24; font-weight: 800; margin-bottom: 10px;">DATA PENGAWAS PER RUANGAN:</p>
                         
-                        <!-- RUANG 1 - 4 Loop Logic -->
                         <div id="room-proctor-inputs">
                             <!-- JS Will Render here based on 1 or 2 proctors -->
                         </div>
@@ -395,6 +395,7 @@
             const actualRoom = startRoom + pageIdx;
             const roomNum = actualRoom.toString().padStart(3, '0');
             const pMode = document.getElementById('abs-p-mode').value;
+            const city = document.getElementById('in-city').value;
 
             const p1Name = document.getElementById(`abs-p-name-r${actualRoom}`)?.value || "....................................";
             const p1Nip = document.getElementById(`abs-p-nip-r${actualRoom}`)?.value || "....................................";
@@ -408,7 +409,7 @@
                 rowsHtml += `<tr><td align="center">${num}</td><td align="center" style="font-weight:700;">${s.no}</td><td style="text-transform:uppercase; font-weight:700; padding-left:10px;">${s.nama}</td><td><div class="zigzag-ttd">${ttd}</div></td></tr>`;
             });
 
-            const titiMangsa = `Babelan, ${document.getElementById('abs-date').value.split(',')[1] || ''}`;
+            const titiMangsa = `${city}, ${document.getElementById('abs-date').value.split(',')[1] || ''}`;
             let footerHtml = '';
             
             if(pMode === '1') {
@@ -427,6 +428,7 @@
 
         function renderPengawasPage() {
             const format = document.getElementById('p-format').value;
+            const city = document.getElementById('in-city').value;
             let count = parseInt(format);
             let rowsHtml = ''; 
             for(let i=1; i<=count; i++) {
@@ -435,7 +437,8 @@
                 const ttd = (i % 2 !== 0) ? `${i}. .....................` : `<div style="padding-left:60px;">${i}. .....................</div>`;
                 rowsHtml += `<tr><td align="center">${i}.</td><td style="text-transform:uppercase; font-weight:700;">${name}</td>${roomCell}<td><div class="zigzag-ttd">${ttd}</div></td></tr>`;
             }
-            return `<div class="page">${renderKop()}<div style="text-align:center; font-weight:800; font-size:12pt; margin-bottom:15px; text-transform:uppercase;">${document.getElementById('title-pengawas').value}</div><div style="margin-left: 20px; margin-bottom: 15px; font-weight: 700; font-size: 10pt;"><table><tr><td width="150">Mata Pelajaran</td><td>: ${document.getElementById('p-mapel').value}</td></tr><tr><td>Hari/Tanggal</td><td>: ${document.getElementById('abs-date').value}</td></tr></table></div><table class="abs-table"><thead><tr><th width="50">No.</th><th>Nama Pengawas</th><th width="80">Ruang</th><th width="220">Tanda Tangan</th></tr></thead><tbody>${rowsHtml}</tbody></table><div class="footer-sig"><div class="sig-box">Ketua Panitia Pelaksana<br><br><br><br><br><u><b>${document.getElementById('p-ketua').value}</b></u><br>NIP. ${document.getElementById('p-nip').value}</div></div></div>`;
+            const dateOnly = document.getElementById('abs-date').value.split(',')[1] || '';
+            return `<div class="page">${renderKop()}<div style="text-align:center; font-weight:800; font-size:12pt; margin-bottom:15px; text-transform:uppercase;">${document.getElementById('title-pengawas').value}</div><div style="margin-left: 20px; margin-bottom: 15px; font-weight: 700; font-size: 10pt;"><table><tr><td width="150">Mata Pelajaran</td><td>: ${document.getElementById('p-mapel').value}</td></tr><tr><td>Hari/Tanggal</td><td>: ${document.getElementById('abs-date').value}</td></tr></table></div><table class="abs-table"><thead><tr><th width="50">No.</th><th>Nama Pengawas</th><th width="80">Ruang</th><th width="220">Tanda Tangan</th></tr></thead><tbody>${rowsHtml}</tbody></table><div class="footer-sig"><div class="sig-box">${city}, ${dateOnly}<br>Ketua Panitia Pelaksana<br><br><br><br><br><u><b>${document.getElementById('p-ketua').value}</b></u><br>NIP. ${document.getElementById('p-nip').value}</div></div></div>`;
         }
 
         document.getElementById('import-excel').addEventListener('change', function(e) {
